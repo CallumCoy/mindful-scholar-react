@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mindfulscholarreact-dev-185855-authRole",
+      "UnauthRoleArn": "arn:aws:iam::594729708488:role/amplify-mindfulscholarreact-dev-185855-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::594729708488:role/amplify-mindfulscholarreact-dev-185855-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-mindfulscholarreact-dev-185855-deployment",
+      "UnauthRoleName": "amplify-mindfulscholarreact-dev-185855-unauthRole",
+      "StackName": "amplify-mindfulscholarreact-dev-185855",
+      "StackId": "arn:aws:cloudformation:us-east-1:594729708488:stack/amplify-mindfulscholarreact-dev-185855/03df2a90-b88d-11ed-a908-0e5e74eb7ed7",
+      "AmplifyAppId": "d2ed7bmpr87nyn"
+    },
+    "categories": {
+      "auth": {
+        "mindfulscholarreactfc98af0d": {}
+      }
+    }
+  }
+}
