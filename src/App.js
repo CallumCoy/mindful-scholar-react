@@ -20,10 +20,17 @@ import {
 } from "./graphql/mutations";
 import { SideBar } from './components/sidebar';
 import { Header } from './components/header';
+import { AddnSaveModal } from './components/Modal';
 
 export default function App() {
 
   const [notes, setNotes] = useState([]);
+
+  
+  const [modalshow, setModalShow] = useState(false);
+
+  const handleClose = () => setModalShow(false);
+  const handleShow = () => setModalShow(true);
 
   useEffect(() => {
     fetchNotes();
@@ -59,50 +66,52 @@ export default function App() {
     });
   }
 
+
   return (
     <View className="App">
       <div id="outer-container" className='background'>
       <SideBar pageWrapId="page-wrap"/>
       <main id="page-wrap">
-      <Header/>
+      <Header handleShow={handleShow}/>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField
             name="ScholarshipName"
-            placeholder="Note Name"
-            label="Note Name"
+            placeholder="Scholarship Name"
+            label="Scholarship Name"
             labelHidden
             variation="quiet"
             required
           />
           <TextField
             name="ExpirationDate"
-            placeholder="Note Description"
-            label="Note Description"
+            placeholder="Scholarship Description"
+            label="Scholarship Description"
             labelHidden
             variation="quiet"
             required
           />
           <Button type="submit" variation="primary">
-            Create Note
+            Create Scholarship
           </Button>
         </Flex>
       </View>
-      <Heading level={2}>Current Notes</Heading>
+      <AddnSaveModal handleClose={handleClose} modalshow={modalshow} />
+      <Heading level={2}>Current Scholarships</Heading>
       <View margin="3rem 0">
-        {notes.map((note) => (
+        {notes.map((Scholarship) => (
           <Flex
-            key={note.ScholarshipName || note.ExpirationDate}
+            key={Scholarship.ScholarshipName || Scholarship.ExpirationDate}
             direction="row"
             justifyContent="center"
             alignItems="center"
           >
             <Text as="strong" fontWeight={700}>
-              {note.ExpirationDate}
+              {Scholarship.ExpirationDate}
             </Text>
-            <Text as="span">{note.ExpirationDate}</Text>
-            <Button variation="link" onClick={() => deleteNote(note)}>
-              Delete note
+            <Text as="span">{Scholarship.ExpirationDate}</Text>
+            <Button variation="link" onClick={() => deleteNote(Scholarship)}>
+              Delete Scholarship
             </Button>
           </Flex>
         ))}
