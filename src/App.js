@@ -19,8 +19,10 @@ import {
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
 import { SideBar } from './components/sidebar';
+import { Header } from './components/header';
 
-const App = ({ signOut }) => {
+export default function App() {
+
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
@@ -62,7 +64,7 @@ const App = ({ signOut }) => {
       <div id="outer-container" className='background'>
       <SideBar pageWrapId="page-wrap"/>
       <main id="page-wrap">
-      <Heading level={1}>My Notes App</Heading>
+      <Header/>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField
@@ -105,11 +107,8 @@ const App = ({ signOut }) => {
           </Flex>
         ))}
       </View>
-      <Button onClick={signOut}>Sign Out</Button>
       </main>
       </div>
     </View>
   );
 };
-
-export default withAuthenticator(App);
