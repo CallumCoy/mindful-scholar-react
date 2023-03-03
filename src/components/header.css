@@ -1,4 +1,4 @@
 .defaultNavbar{
   padding-left: 25px;
-  height: 80px;
+  min-height: 80px;
 }
