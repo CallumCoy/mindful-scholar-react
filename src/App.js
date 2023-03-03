@@ -59,7 +59,7 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
-      <div id="outer-container">
+      <div id="outer-container" className='background'>
       <SideBar pageWrapId="page-wrap"/>
       <main id="page-wrap">
       <Heading level={1}>My Notes App</Heading>
