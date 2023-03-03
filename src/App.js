@@ -1,4 +1,5 @@
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
 import React, { useState, useEffect } from "react";
 import "@aws-amplify/ui-react/styles.css";
 import { API } from "aws-amplify";
@@ -6,6 +7,7 @@ import {
   Button,
   Flex,
   Heading,
+  Menu,
   Text,
   TextField,
   View,
@@ -16,6 +18,7 @@ import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
+import { SideBar } from './components/sidebar';
 
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
@@ -56,6 +59,9 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
+      <div id="outer-container">
+      <SideBar pageWrapId="page-wrap"/>
+      <main id="page-wrap">
       <Heading level={1}>My Notes App</Heading>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
@@ -100,6 +106,8 @@ const App = ({ signOut }) => {
         ))}
       </View>
       <Button onClick={signOut}>Sign Out</Button>
+      </main>
+      </div>
     </View>
   );
 };
