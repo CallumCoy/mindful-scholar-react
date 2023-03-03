@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import './sidebar.css'
-import "react-datepicker/dist/react-datepicker.css";
 
 export class SideBar extends React.Component {
   render () {
