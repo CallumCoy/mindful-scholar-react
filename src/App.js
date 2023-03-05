@@ -15,7 +15,6 @@ import {
 } from "@aws-amplify/ui-react";
 import { listNotes } from "./graphql/queries";
 import {
-  createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
 import { SideBar } from './components/sidebar';
@@ -25,36 +24,40 @@ import { AddnSaveModal } from './components/Modal';
 export default function App() {
 
   const [notes, setNotes] = useState([]);
-
-  
+  const [curSchol, setSchol] = useState([]);
   const [modalshow, setModalShow] = useState(false);
 
   const handleClose = () => setModalShow(false);
   const handleShow = () => setModalShow(true);
 
+  const blankSchol = {
+    ScholarshipName: "test",
+    ExpirationDate: "",
+    Amount: 0,
+    ApplicationLink: "",
+    CitizenshipStatus: [],
+    CollegeLevel: "",
+    Description: "",
+    Ethnicity: [],
+    Interests: [],
+    maxGPA: 4,
+    minGPA: 0,
+    Provider: "",
+    StateOfResidency: "",
+    TypeOfProgram: "",
+  }
+
+
   useEffect(() => {
     fetchNotes();
+    setSchol(blankSchol);
   }, []);
 
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listNotes });
     const notesFromAPI = apiData.data.listNotes.items;
+    console.log(notesFromAPI);
     setNotes(notesFromAPI);
-  }
-
-  async function createNote(event) {
-    event.preventDefault();
-    const form = new FormData(event.target);
-    const data = {
-      ScholarshipName: form.get("ScholarshipName"),
-      ExpirationDate: form.get("ExpirationDate"),
-    };
-    await API.graphql({
-      query: createNoteMutation,
-      variables: { input: data },
-    });
-    fetchNotes();
-    event.target.reset();
   }
 
   async function deleteNote({ id }) {
@@ -73,7 +76,7 @@ export default function App() {
       <SideBar pageWrapId="page-wrap"/>
       <main id="page-wrap">
       <Header handleShow={handleShow}/>
-      <View as="form" margin="3rem 0" onSubmit={createNote}>
+      <View as="form" margin="3rem 0">
         <Flex direction="row" justifyContent="center">
           <TextField
             name="ScholarshipName"
@@ -96,7 +99,17 @@ export default function App() {
           </Button>
         </Flex>
       </View>
-      <AddnSaveModal handleClose={handleClose} modalshow={modalshow} />
+      <AddnSaveModal 
+        handleClose={handleClose}
+        fetchNotes={fetchNotes}
+        setNotes={setNotes}
+        setSchol={setSchol}
+
+        blankSchol = {blankSchol}
+        curSchol={curSchol}
+        modalshow={modalshow}
+        notes={notes}
+      />
       <Heading level={2}>Current Scholarships</Heading>
       <View margin="3rem 0">
         {notes.map((Scholarship) => (
