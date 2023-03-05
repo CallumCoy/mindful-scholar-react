@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #b4bad2;
+  background-color: #282c34;
   min-height: 100vh;
 }
 
@@ -41,4 +41,9 @@
 
 #outer-container {
   height:100vh;
+}
+
+#page-wrap {
+  height:100vh;
+  background-color: #b4bad2;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { scaleRotate as Menu } from 'react-burger-menu'
+import { scaleDown as Menu } from 'react-burger-menu'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
