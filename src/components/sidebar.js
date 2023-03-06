@@ -10,8 +10,8 @@ export class SideBar extends React.Component {
 
     return (
       <Menu width={'400px'} pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } >
-        <div class='scrolling'>
-            <Form.Label class="scrolling" className="light-text scrolling">Scholarship</Form.Label>
+        <div className='scrolling'>
+            <Form.Label className="light-text scrolling">Scholarship</Form.Label>
                 <div>
                 <InputGroup className="mb-3">
                     <Form.Control
