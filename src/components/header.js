@@ -25,13 +25,13 @@ export class Header extends React.Component {
             <Nav className="me-auto">
             </Nav>
             <div className='signed-in'>
-                <Button variant='primary' class="p-2" onClick={this.props.handleShow}>Create</Button>
-                <Button variant='secondary' class="p-2">Sign Out</Button>
+                <Button variant='primary' className="p-2" onClick={this.props.handleShow}>Create</Button>
+                <Button variant='secondary' className="p-2">Sign Out</Button>
             </div>
 
             <div className='signed-out'>
-                <Button variant='primary' class="p-2">Sign In</Button>
-                <Button variant='primary' class="p-2">Sign Up</Button>
+                <Button variant='primary' className="p-2">Sign In</Button>
+                <Button variant='primary' className="p-2">Sign Up</Button>
             </div>
           </Navbar.Collapse>
         </Container>

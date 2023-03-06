@@ -1,0 +1,16 @@
+export const blankSchol = {
+    ScholarshipName: "",
+    ExpirationDate: "",
+    Amount: 0,
+    ApplicationLink: "",
+    CitizenshipStatus: [],
+    CollegeLevel: "",
+    Description: "",
+    Ethnicity: [],
+    Interests: [],
+    maxGPA: 4,
+    minGPA: 0,
+    Provider: "",
+    StateOfResidency: "",
+    TypeOfProgram: "",
+  }
