@@ -23,7 +23,7 @@ export class SideBar extends React.Component {
             <br/>
 
             <Form.Label className="light-text">Application Date</Form.Label>
-            <input type="date" class="form-control"/>
+            <input type="date" className="form-control"/>
 
             <br/>
 
