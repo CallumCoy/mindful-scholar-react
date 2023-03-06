@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import * as Constants from './constants'
 import {
-  createNote as createNoteMutation,
+  CreateScholarship as CreateScholarshipMutation,
 } from "../graphql/mutations";
 
 export class AddnSaveModal extends React.Component {
@@ -20,7 +20,7 @@ export class AddnSaveModal extends React.Component {
         this.resetSelection=props.resetSelection;
 
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.createNote = this.createNote.bind(this)
+        this.CreateScholarship = this.CreateScholarship.bind(this)
     }
 
     handleInputChange(event) {
@@ -35,21 +35,21 @@ export class AddnSaveModal extends React.Component {
     }
 
     saveAndQuit = () => {
-        this.createNote()
+        this.CreateScholarship()
         this.handleClose()
     }
 
     saveAndContinue = () => {
-        this.createNote()
+        this.CreateScholarship()
     }
 
-    async createNote () {
+    async CreateScholarship () {
       const data = this.state
       console.log("data\n")
       console.log(data)
       console.log(this.state)
       await API.graphql({
-        query: createNoteMutation,
+        query: CreateScholarshipMutation,
         variables: { input: data },
       });
       this.fetchNotes();
