@@ -34,7 +34,25 @@
   */
   .bm-menu-wrap {
     position: fixed;
-    height: 100%;
+    height: auto;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #b8b7ad #373a47;
+  }
+  
+  .bm-menu-wrap::-webkit-scrollbar-track {
+    background: #373a47;
+  }
+  
+  .bm-menu-wrap::-webkit-scrollbar-thumb {
+    background-color: #b8b7ad;
+    border-radius: 20px;
+    border: 3px solid #373a47;
+  }
+  .scrolling {
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #b8b7ad #373a47;
   }
   
   /* General sidebar styles */
@@ -42,10 +60,14 @@
     background: #373a47;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
+    height: auto !important;
+    min-height: 100%;
   }
   
   /* Morph shape necessary with bubble or elastic */
   .bm-morph-shape {
+    height: auto !important;
+    min-height: 100% !important;
     fill: #373a47;
   }
   
