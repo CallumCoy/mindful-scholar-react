@@ -11,9 +11,9 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
-import { listNotes } from "./graphql/queries";
+import { listScholarships } from "./graphql/queries";
 import {
-  deleteNote as deleteNoteMutation,
+  deleteScholarship as deleteScholarshipMutation,
 } from "./graphql/mutations";
 import { SideBar } from './components/sidebar';
 import { Header } from './components/header';
@@ -34,7 +34,7 @@ export class App extends Component {
     console.log(this.state.curSchol)
     console.log(Constants.blankSchol)
     this.fetchNotes = this.fetchNotes.bind(this)
-    this.deleteNote = this.deleteNote.bind(this)
+    this.deleteScholarship = this.deleteScholarship.bind(this)
 
   }
 
@@ -52,17 +52,17 @@ export class App extends Component {
 
   async fetchNotes() {
     this.setState({loadedScholarship: true})
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
+    const apiData = await API.graphql({ query: listScholarships });
+    const notesFromAPI = apiData.data.listScholarships.items;
     console.log([notesFromAPI]);
     this.setState({notes:notesFromAPI});
   }
 
-  async deleteNote({ id }) {
+  async deleteScholarship({ id }) {
     const newNotes = this.notes.filter((note) => note.ScholarshipName !== id);
     this.setState({notes: newNotes});
     await API.graphql({
-      query: deleteNoteMutation,
+      query: deleteScholarshipMutation,
       variables: { input: { id } },
     });
   }
@@ -98,7 +98,7 @@ export class App extends Component {
               {Scholarship.ScholarshipName}
             </Text>
             <Text as="span">{Scholarship.ExpirationDate}</Text>
-            <Button variation="link" onClick={() => this.deleteNote(Scholarship)}>
+            <Button variation="link" onClick={() => this.deleteScholarship(Scholarship)}>
               Delete Scholarship(inactive)
             </Button>
           </Flex>
