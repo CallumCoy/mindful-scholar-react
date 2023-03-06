@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createNote = /* GraphQL */ `
-  mutation CreateNote(
-    $input: CreateNoteInput!
-    $condition: ModelNoteConditionInput
+export const createScholarship = /* GraphQL */ `
+  mutation CreateScholarship(
+    $input: CreateScholarshipInput!
+    $condition: ModelScholarshipConditionInput
   ) {
-    createNote(input: $input, condition: $condition) {
+    createScholarship(input: $input, condition: $condition) {
       ScholarshipName
       ExpirationDate
       Amount
@@ -27,12 +27,12 @@ export const createNote = /* GraphQL */ `
     }
   }
 `;
-export const updateNote = /* GraphQL */ `
-  mutation UpdateNote(
-    $input: UpdateNoteInput!
-    $condition: ModelNoteConditionInput
+export const updateScholarship = /* GraphQL */ `
+  mutation UpdateScholarship(
+    $input: UpdateScholarshipInput!
+    $condition: ModelScholarshipConditionInput
   ) {
-    updateNote(input: $input, condition: $condition) {
+    updateScholarship(input: $input, condition: $condition) {
       ScholarshipName
       ExpirationDate
       Amount
@@ -53,12 +53,12 @@ export const updateNote = /* GraphQL */ `
     }
   }
 `;
-export const deleteNote = /* GraphQL */ `
-  mutation DeleteNote(
-    $input: DeleteNoteInput!
-    $condition: ModelNoteConditionInput
+export const deleteScholarship = /* GraphQL */ `
+  mutation DeleteScholarship(
+    $input: DeleteScholarshipInput!
+    $condition: ModelScholarshipConditionInput
   ) {
-    deleteNote(input: $input, condition: $condition) {
+    deleteScholarship(input: $input, condition: $condition) {
       ScholarshipName
       ExpirationDate
       Amount

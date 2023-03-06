@@ -1,9 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateNote = /* GraphQL */ `
-  subscription OnCreateNote($filter: ModelSubscriptionNoteFilterInput) {
-    onCreateNote(filter: $filter) {
+export const onCreateScholarship = /* GraphQL */ `
+  subscription OnCreateScholarship(
+    $filter: ModelSubscriptionScholarshipFilterInput
+  ) {
+    onCreateScholarship(filter: $filter) {
       ScholarshipName
       ExpirationDate
       Amount
@@ -24,9 +26,11 @@ export const onCreateNote = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateNote = /* GraphQL */ `
-  subscription OnUpdateNote($filter: ModelSubscriptionNoteFilterInput) {
-    onUpdateNote(filter: $filter) {
+export const onUpdateScholarship = /* GraphQL */ `
+  subscription OnUpdateScholarship(
+    $filter: ModelSubscriptionScholarshipFilterInput
+  ) {
+    onUpdateScholarship(filter: $filter) {
       ScholarshipName
       ExpirationDate
       Amount
@@ -47,9 +51,11 @@ export const onUpdateNote = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteNote = /* GraphQL */ `
-  subscription OnDeleteNote($filter: ModelSubscriptionNoteFilterInput) {
-    onDeleteNote(filter: $filter) {
+export const onDeleteScholarship = /* GraphQL */ `
+  subscription OnDeleteScholarship(
+    $filter: ModelSubscriptionScholarshipFilterInput
+  ) {
+    onDeleteScholarship(filter: $filter) {
       ScholarshipName
       ExpirationDate
       Amount

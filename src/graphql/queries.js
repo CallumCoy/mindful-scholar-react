@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getNote = /* GraphQL */ `
-  query GetNote($id: ID!) {
-    getNote(id: $id) {
+export const getScholarship = /* GraphQL */ `
+  query GetScholarship($id: ID!) {
+    getScholarship(id: $id) {
       ScholarshipName
       ExpirationDate
       Amount
@@ -24,13 +24,13 @@ export const getNote = /* GraphQL */ `
     }
   }
 `;
-export const listNotes = /* GraphQL */ `
-  query ListNotes(
-    $filter: ModelNoteFilterInput
+export const listScholarships = /* GraphQL */ `
+  query ListScholarships(
+    $filter: ModelScholarshipFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listScholarships(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         ScholarshipName
         ExpirationDate
