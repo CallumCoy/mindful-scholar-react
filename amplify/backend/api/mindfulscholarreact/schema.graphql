@@ -6,6 +6,7 @@ input AMPLIFY {
 type Scholarship @model @auth(rules: [{ allow: public }]) {
   ScholarshipName: ID!
   ExpirationDate: String!
+  OpeningDate: String
   Amount: Int
   ApplicationLink: String
   CitizenshipStatus: String

@@ -9,6 +9,7 @@ export const createScholarship = /* GraphQL */ `
     createScholarship(input: $input, condition: $condition) {
       ScholarshipName
       ExpirationDate
+      OpeningDate
       Amount
       ApplicationLink
       CitizenshipStatus
@@ -35,6 +36,7 @@ export const updateScholarship = /* GraphQL */ `
     updateScholarship(input: $input, condition: $condition) {
       ScholarshipName
       ExpirationDate
+      OpeningDate
       Amount
       ApplicationLink
       CitizenshipStatus
@@ -61,6 +63,7 @@ export const deleteScholarship = /* GraphQL */ `
     deleteScholarship(input: $input, condition: $condition) {
       ScholarshipName
       ExpirationDate
+      OpeningDate
       Amount
       ApplicationLink
       CitizenshipStatus

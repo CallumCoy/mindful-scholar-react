@@ -8,6 +8,7 @@ export const onCreateScholarship = /* GraphQL */ `
     onCreateScholarship(filter: $filter) {
       ScholarshipName
       ExpirationDate
+      OpeningDate
       Amount
       ApplicationLink
       CitizenshipStatus
@@ -33,6 +34,7 @@ export const onUpdateScholarship = /* GraphQL */ `
     onUpdateScholarship(filter: $filter) {
       ScholarshipName
       ExpirationDate
+      OpeningDate
       Amount
       ApplicationLink
       CitizenshipStatus
@@ -58,6 +60,7 @@ export const onDeleteScholarship = /* GraphQL */ `
     onDeleteScholarship(filter: $filter) {
       ScholarshipName
       ExpirationDate
+      OpeningDate
       Amount
       ApplicationLink
       CitizenshipStatus

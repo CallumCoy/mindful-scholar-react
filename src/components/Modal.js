@@ -110,6 +110,16 @@ export class AddnSaveModal extends React.Component {
 
                             <br/>
 
+                            <Form.Label className="light-text">Opening Date</Form.Label>
+                            <input 
+                                type="date" 
+                                name="OpeningDate" 
+                                className="form-control" 
+                                value={this.state.OpeningDate || ""}
+                                onChange={this.handleInputChange}/>
+
+                            <br/>
+
                             <Form.Label className="light-text">Application Date</Form.Label>
                             <input 
                                 type="date" 

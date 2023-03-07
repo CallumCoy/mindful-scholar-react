@@ -6,6 +6,7 @@ export const getScholarship = /* GraphQL */ `
     getScholarship(id: $id) {
       ScholarshipName
       ExpirationDate
+      OpeningDate
       Amount
       ApplicationLink
       CitizenshipStatus
@@ -34,6 +35,7 @@ export const listScholarships = /* GraphQL */ `
       items {
         ScholarshipName
         ExpirationDate
+        OpeningDate
         Amount
         ApplicationLink
         CitizenshipStatus
