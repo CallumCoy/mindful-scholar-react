@@ -19,6 +19,7 @@ import { SideBar } from './components/sidebar';
 import { Header } from './components/header';
 import { AddnSaveModal } from './components/Modal';
 import * as Constants from './components/constants'
+import { ScholarCard } from './components/ScholarCard';
 
 export class App extends Component {
 
@@ -68,8 +69,6 @@ export class App extends Component {
   }
 
   render () {
-    if (!this.loadedScholarship){
-    }
     return(
     <View className="App">
       <div id="outer-container" className='background'>
@@ -87,22 +86,11 @@ export class App extends Component {
       />
       <Heading level={2}>Current Scholarships</Heading>
       <View margin="3rem 0">
+        <div className="row">
         {this.state.notes.map((Scholarship) => (
-          <Flex
-            key={Scholarship.ScholarshipName || Scholarship.ExpirationDate}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text as="strong" fontWeight={700}>
-              {Scholarship.ScholarshipName}
-            </Text>
-            <Text as="span">{Scholarship.ExpirationDate}</Text>
-            <Button variation="link" onClick={() => this.deleteScholarship(Scholarship)}>
-              Delete Scholarship(inactive)
-            </Button>
-          </Flex>
+          <ScholarCard Scholarship={Scholarship}/>
         ))}
+        </div>
       </View>
       <button onClick={this.fetchNotes}>Fetch Scholarships</button>
       </main>
