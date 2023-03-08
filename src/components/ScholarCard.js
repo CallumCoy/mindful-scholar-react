@@ -10,6 +10,14 @@ export class ScholarCard extends Component {
     super(props)
 
     this.state = props.Scholarship;
+
+    this.handleViewerShow = props.handleViewerShow
+    this.setCurSchol = props.setCurSchol
+  }
+
+  manageSelect = () => {
+    this.setCurSchol(this.state)
+    this.handleViewerShow()
   }
 
   render () {
@@ -19,22 +27,24 @@ export class ScholarCard extends Component {
               <h5 className="card-title">{this.state.ScholarshipName}</h5>  
               <TextTruncate text={this.state.Description} line={3}/>
               <br/>
-              <div class="container">
-                <div class="row">
-                  <div class="col-sm">
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm">
                     GPA Range: {this.state.MinGPA} - {this.state.MaxGPA}
                   </div>
-                  <div class="col-sm">
+                  <div className="col-sm">
                     Value: ${this.state.Amount}
                   </div>
-                  <div class="col-sm">
+                  <div className="col-sm">
                   Provider: {this.state.Provider}
                   </div>
                 </div>
               </div>
-              <div class="container">
-                <div class="btn-group class w-100" role="group" aria-label="Basic example">
-                  <Button className='btn-light btn-outline-info p-2'>Select</Button>
+              <div className="container">
+                <div className="btn-group class w-100" role="group" aria-label="Basic example">
+                  <Button 
+                    className='btn-light btn-outline-info p-2'
+                    onClick={this.manageSelect}>Select</Button>
                   <Button className='btn-light btn btn-outline-success p-2'>Edit</Button>
                   <Button className="btn-light btn-outline-danger p-2">Delete</Button>
                 </div>
