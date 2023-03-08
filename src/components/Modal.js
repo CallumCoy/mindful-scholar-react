@@ -8,6 +8,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import * as Constants from './constants'
 import {
     createScholarship as createNoteMutation,
+    updateScholarship as updateScholarshipMutation,
 } from "../graphql/mutations";
 
 export class AddnSaveModal extends React.Component {
@@ -16,8 +17,6 @@ export class AddnSaveModal extends React.Component {
         this.state = props
 
         this.handleEditClose=props.handleEditClose;
-        this.fetchNotes=props.fetchNotes;
-        this.resetSelection=props.resetSelection;
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.CreateScholarship = this.CreateScholarship.bind(this);
@@ -44,23 +43,46 @@ export class AddnSaveModal extends React.Component {
     }
 
     async CreateScholarship () {
-      const data = this.state
-      console.log("data\n")
-      console.log(data)
-      console.log(this.state)
-      await API.graphql({
-        query: createNoteMutation,
-        variables: { input: data },
-      });
-      this.fetchNotes();
-      this.resetSelection();
+        const data ={
+            ScholarshipName: this.state.ScholarshipName,
+            ExpirationDate: this.state.ExpirationDate,
+            OpeningDate: this.state.OpeningDate,
+            Amount: this.state.Amount,
+            ApplicationLink: this.state.ApplicationLink,
+            CitizenshipStatus: this.state.CitizenshipStatus,
+            CollegeLevel: this.state.CollegeLevel,
+            Description: this.state.Description,
+            Ethnicity: this.state.Ethnicity,
+            Interests: this.state.Interests,
+            maxGPA: this.state.maxGPA,
+            minGPA: this.state.minGPA,
+            Provider: this.state.Provider,
+            StateOfResidency: this.state.StateOfResidency,
+            TypeOfProgram: this.state.TypeOfProgram,
+            id: this.state.id,
+        }
+
+        if (!data.id){
+            await API.graphql({
+                query: createNoteMutation,
+                variables: { input: data },
+            });
+        } else {
+            await API.graphql({
+                query: updateScholarshipMutation,
+                variables: { input: data },
+            });
+        }
+        this.clearForm();
+        this.props.resetSelection();
+        this.props.fetchNotes();
     }
 
     close = () => {
         this.handleEditClose()
     }
 
-    pullCurrentSchol = () =>{this.setState({curSchol: this.props.curSchol})}
+    pullCurrentSchol = () =>{this.setState(this.props.curSchol)}
     
     render () {
         return (
@@ -82,7 +104,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="Scholarship"
                                 aria-label="Scholarship"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.ScholarshipName || ""}
+                                value={this.state.ScholarshipName || ""}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -95,7 +117,7 @@ export class AddnSaveModal extends React.Component {
                                 rows="5" 
                                 id="Description" 
                                 name="Description"
-                                value={this.state.curSchol.Description || ""}
+                                value={this.state.Description || ""}
                                 onChange={this.handleInputChange}>
                                 </textarea>
 
@@ -108,7 +130,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="Application_URL"
                                 aria-label="Application_URL"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.ApplicationLink || ""}
+                                value={this.state.ApplicationLink || ""}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -120,7 +142,7 @@ export class AddnSaveModal extends React.Component {
                                 type="date" 
                                 name="OpeningDate" 
                                 className="form-control" 
-                                value={this.state.curSchol.OpeningDate || ""}
+                                value={this.state.OpeningDate || ""}
                                 onChange={this.handleInputChange}/>
 
                             <br/>
@@ -130,7 +152,7 @@ export class AddnSaveModal extends React.Component {
                                 type="date" 
                                 name="ExpirationDate" 
                                 className="form-control" 
-                                value={this.state.curSchol.ExpirationDate || ""}
+                                value={this.state.ExpirationDate || ""}
                                 onChange={this.handleInputChange}/>
 
                             <br/>
@@ -145,7 +167,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="1000"
                                 aria-label="Amount"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.Amount || 0}
+                                value={this.state.Amount || 0}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -159,7 +181,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="Undergrad"
                                 aria-label="CollegeLevel"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.CollegeLevel || ""}
+                                value={this.state.CollegeLevel || ""}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -176,7 +198,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="4.0"
                                 aria-label="MinGPA"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.minGPA || 0}
+                                value={this.state.minGPA || 0}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -193,7 +215,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="4.0"
                                 aria-label="MaxGPA"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.maxGPA ||4}
+                                value={this.state.maxGPA ||4}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -207,7 +229,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="UCF"
                                 aria-label="Backer"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.Provider || ""}
+                                value={this.state.Provider || ""}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -221,7 +243,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="Interests"
                                 aria-label="Interests"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.Interests || ""}
+                                value={this.state.Interests || ""}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -235,7 +257,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="Ethnicity"
                                 aria-label="Ethnicity"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.Ethnicity || ""}
+                                value={this.state.Ethnicity || ""}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -249,7 +271,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="Citizenship Status"
                                 aria-label="Citizenship Status"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.CitizenshipStatus || ""}
+                                value={this.state.CitizenshipStatus || ""}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>
@@ -263,7 +285,7 @@ export class AddnSaveModal extends React.Component {
                                 placeholder="State of Residency"
                                 aria-label="State of Residency"
                                 aria-describedby="basic-addon1"
-                                value={this.state.curSchol.StateOfResidency || ""}
+                                value={this.state.StateOfResidency || ""}
                                 onChange={this.handleInputChange}
                                 />
                             </InputGroup>

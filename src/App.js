@@ -73,7 +73,6 @@ export class App extends Component {
     this.setState({loadedScholarship: true})
     const apiData = await API.graphql({ query: listScholarships });
     const notesFromAPI = apiData.data.listScholarships.items;
-    console.log([notesFromAPI]);
     this.setState({notes:notesFromAPI});
   }
 
@@ -89,7 +88,7 @@ export class App extends Component {
   render () {
     return(
     <View className="App">
-      <div id="outer-container" className='background'>
+      <div onstart={this.fetchNotes} id="outer-container" className='background'>
       <SideBar pageWrapId="page-wrap"/>
       <main id="page-wrap">
       <Header handleEditShow={this.handleEditShow}/>
