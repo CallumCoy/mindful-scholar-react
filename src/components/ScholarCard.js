@@ -12,12 +12,18 @@ export class ScholarCard extends Component {
     this.state = props.Scholarship;
 
     this.handleViewerShow = props.handleViewerShow
+    this.handleEditShow = props.handleEditShow
     this.setCurSchol = props.setCurSchol
   }
 
   manageSelect = () => {
     this.setCurSchol(this.state)
     this.handleViewerShow()
+  }
+
+  manageEdit = () => {
+    this.setCurSchol(this.state)
+    this.handleEditShow()
   }
 
   render () {
@@ -45,7 +51,9 @@ export class ScholarCard extends Component {
                   <Button 
                     className='btn-light btn-outline-info p-2'
                     onClick={this.manageSelect}>Select</Button>
-                  <Button className='btn-light btn btn-outline-success p-2'>Edit</Button>
+                  <Button 
+                    className='btn-light btn btn-outline-success p-2'
+                    onClick={this.manageEdit}>Edit</Button>
                   <Button className="btn-light btn-outline-danger p-2">Delete</Button>
                 </div>
               </div>

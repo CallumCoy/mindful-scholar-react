@@ -20,7 +20,7 @@ export class ViewModal extends React.Component {
     }
 
     joinArr = (arr) => {
-        return (arr.join(", "))
+        return (arr)
     }
     
     render () {
@@ -76,7 +76,7 @@ export class ViewModal extends React.Component {
 
                             <label className="light-text">College Level</label>
                             <div className="mb-3">
-                                {this.props.curSchol.CollegeLevel.join(", ") || ""}
+                                {this.props.curSchol.CollegeLevel || ""}
                             </div>
 
                             <br/>
@@ -104,14 +104,14 @@ export class ViewModal extends React.Component {
 
                             <label className="light-text">Interests</label>
                             <div className="mb-3">
-                                {this.props.curSchol.Interests.join(", ") || ""}
+                                {this.props.curSchol.Interests || ""}
                             </div>
 
                             <br/>
 
                             <label className="light-text">Ethnicity</label>
                             <div className="mb-3">
-                                {this.props.curSchol.Ethnicity.join(", ") || ""}
+                                {this.props.curSchol.Ethnicity || ""}
                             </div>
 
                             <br/>

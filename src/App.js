@@ -117,6 +117,7 @@ export class App extends Component {
         <div className="row">
         {this.state.notes.map((Scholarship) => (
           <ScholarCard 
+            handleEditShow={this.handleEditShow}
             handleViewerShow={this.handleViewerShow}
             setCurSchol={this.setCurSchol}
             
