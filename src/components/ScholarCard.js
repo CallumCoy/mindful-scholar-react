@@ -11,6 +11,7 @@ export class ScholarCard extends Component {
 
     this.state = props.Scholarship;
 
+    this.deleteScholarship = props.deleteScholarship
     this.handleViewerShow = props.handleViewerShow
     this.handleEditShow = props.handleEditShow
     this.setCurSchol = props.setCurSchol
@@ -54,7 +55,9 @@ export class ScholarCard extends Component {
                   <Button 
                     className='btn-light btn btn-outline-success p-2'
                     onClick={this.manageEdit}>Edit</Button>
-                  <Button className="btn-light btn-outline-danger p-2">Delete</Button>
+                  <Button
+                    className="btn-light btn-outline-danger p-2"
+                    onClick={() => this.deleteScholarship(this.state)}>Delete</Button>
                 </div>
               </div>
             </div>

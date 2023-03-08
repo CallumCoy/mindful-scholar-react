@@ -13,10 +13,18 @@ export class ViewModal extends React.Component {
         this.state = props.curSchol;
 
         this.handleViewerClose = props.handleViewerClose
+        this.handleEditShow = props.handleEditShow
+        this.deleteScholarship = props.deleteScholarship
     }
 
-    close = () => {
-        this.handleEditClose()
+    handleDelete = () => {
+        this.props.deleteScholarship(this.props.curSchol)
+        this.handleViewerClose()
+    }
+
+    manageEdit = () => {
+        this.handleViewerClose()
+        this.handleEditShow()
     }
 
     joinArr = (arr) => {
@@ -128,12 +136,19 @@ export class ViewModal extends React.Component {
                                 {this.props.curSchol.StateOfResidency || ""}
                             </div>
                             <Modal.Footer>
-                                <Button variant="secondary" onClick={this.handleViewerClose}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={this.saveAndQuit}>
-                                    Edit
-                                </Button>
+                                <div className="container">
+                                    <div className="btn-group class w-100" role="group" aria-label="Basic example">
+                                    <Button 
+                                        className='btn-light btn-outline-info p-2'
+                                        onClick={this.handleViewerClose}>Close</Button>
+                                    <Button 
+                                        className='btn-light btn btn-outline-success p-2'
+                                        onClick={this.manageEdit}>Edit</Button>
+                                    <Button
+                                        className="btn-light btn-outline-danger p-2"
+                                        onClick={this.handleDelete}>Delete</Button>
+                                    </div>
+                                </div>
                             </Modal.Footer>
                     </Modal.Body>
                 </Modal>

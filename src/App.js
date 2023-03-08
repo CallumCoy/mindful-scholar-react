@@ -77,8 +77,8 @@ export class App extends Component {
   }
 
   async deleteScholarship({ id }) {
-    const newNotes = this.notes.filter((note) => note.ScholarshipName !== id);
-    this.setState({notes: newNotes});
+    const newScholarships = this.state.notes.filter((scholarship) => scholarship.ScholarshipName !== id);
+    this.setState({scholarships: newScholarships});
     await API.graphql({
       query: deleteScholarshipMutation,
       variables: { input: { id } },
@@ -88,7 +88,7 @@ export class App extends Component {
   render () {
     return(
     <View className="App">
-      <div onstart={this.fetchNotes} id="outer-container" className='background'>
+      <div onLoad={this.fetchNotes} id="outer-container" className='background'>
       <SideBar pageWrapId="page-wrap"/>
       <main id="page-wrap">
       <Header handleEditShow={this.handleEditShow}/>
@@ -104,6 +104,8 @@ export class App extends Component {
       />
 
       <ViewModal 
+        deleteScholarship={this.deleteScholarship}
+        handleEditShow={this.handleEditShow}
         handleViewerClose={this.handleViewerClose}
         resetSelection={this.resetSelection}
 
@@ -116,6 +118,7 @@ export class App extends Component {
         <div className="row">
         {this.state.notes.map((Scholarship) => (
           <ScholarCard 
+            deleteScholarship={this.deleteScholarship}
             handleEditShow={this.handleEditShow}
             handleViewerShow={this.handleViewerShow}
             setCurSchol={this.setCurSchol}
