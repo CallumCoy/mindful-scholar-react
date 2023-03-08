@@ -1,4 +1,9 @@
 .defaultNavbar{
-  padding-left: 25px;
-  min-height: 80px;
+  max-height: 80px;
+}
+
+.defaultImg{
+  margin: auto;
+  height: auto;
+  max-height: 50px;
 }

@@ -9,7 +9,11 @@ export class SideBar extends React.Component {
   render () {
 
     return (
-      <Menu width={'400px'} pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } >
+      <Menu
+        width={'400px'}
+        pageWrapId={ "page-wrap" }
+        outerContainerId={ "outer-container" }
+        customBurgerIcon={<div> ⮞ </div>}>
         <div className='scrolling'>
             <Form.Label className="light-text scrolling">Scholarship</Form.Label>
                 <div>

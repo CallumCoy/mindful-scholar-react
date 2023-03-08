@@ -40,10 +40,10 @@
 }
 
 #outer-container {
-  height:100vh;
+  min-height:100vh;
 }
 
 #page-wrap {
-  height:100vh;
+  min-height:100vh;
   background-color: #b4bad2;
 }

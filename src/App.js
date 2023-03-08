@@ -115,7 +115,7 @@ export class App extends Component {
 
       <Heading level={2}>Current Scholarships</Heading>
       <View margin="3rem 0">
-        <div className="row">
+        <div className="row m-auto">
         {this.state.notes.map((Scholarship) => (
           <ScholarCard 
             deleteScholarship={this.deleteScholarship}

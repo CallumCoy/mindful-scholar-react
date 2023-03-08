@@ -29,21 +29,21 @@ export class ScholarCard extends Component {
 
   render () {
     return(
-          <div className="card my-2 mx-auto" id={this.state.id}>
+          <div className="card my-2 mx-auto" key={this.props.Scholarship.id}>
             <div className="card-body">
-              <h5 className="card-title">{this.state.ScholarshipName}</h5>  
-              <TextTruncate text={this.state.Description} line={3}/>
+              <h5 className="card-title">{this.props.Scholarship.ScholarshipName}</h5>  
+              <TextTruncate text={this.props.Scholarship.Description} line={3}/>
               <br/>
               <div className="container">
                 <div className="row">
                   <div className="col-sm">
-                    GPA Range: {this.state.MinGPA} - {this.state.MaxGPA}
+                    GPA Range: {this.props.Scholarship.MinGPA} - {this.props.Scholarship.MaxGPA}
                   </div>
                   <div className="col-sm">
-                    Value: ${this.state.Amount}
+                    Value: ${this.props.Scholarship.Amount}
                   </div>
                   <div className="col-sm">
-                  Provider: {this.state.Provider}
+                  Provider: {this.props.Scholarship.Provider}
                   </div>
                 </div>
               </div>
@@ -63,7 +63,7 @@ export class ScholarCard extends Component {
             </div>
             <div className="card-footer">
               <small className="text-muted">
-                Updated on: {Moment(this.state.updatedAt.Date).format('MMM d YYYY')} | Exp. on: {Moment(this.state.ExpirationDate.Date).format('MMM d YYYY')}</small>
+                Updated on: {Moment(this.props.Scholarship.updatedAt.Date).format('MMM d YYYY')} | Exp. on: {Moment(this.props.Scholarship.ExpirationDate.Date).format('MMM d YYYY')}</small>
             </div>
           </div>
     )
