@@ -1,5 +1,6 @@
 export const blankSchol = {
     ScholarshipName: "",
+    OpeningDate:"",
     ExpirationDate: "",
     Amount: 0,
     ApplicationLink: "",

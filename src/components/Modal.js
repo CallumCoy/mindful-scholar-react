@@ -15,7 +15,7 @@ export class AddnSaveModal extends React.Component {
         super(props)
         this.state = props.curSchol
 
-        this.handleClose=props.handleClose;
+        this.handleEditClose=props.handleEditClose;
         this.fetchNotes=props.fetchNotes;
         this.resetSelection=props.resetSelection;
 
@@ -36,7 +36,7 @@ export class AddnSaveModal extends React.Component {
 
     saveAndQuit = () => {
         this.CreateScholarship()
-        this.handleClose()
+        this.handleEditClose()
     }
 
     saveAndContinue = () => {
@@ -57,14 +57,14 @@ export class AddnSaveModal extends React.Component {
     }
 
     close = () => {
-        this.handleClose()
+        this.handleEditClose()
     }
     
     render () {
         return (
             <div>
                 <Modal
-                    className="modal-ku" show={this.props.modalshow} onHide={this.handleClose}>
+                    className="modal-ku" show={this.props.modalEditorShow} onHide={this.handleEditClose}>
                     <Modal.Header closeButton>
                     <Modal.Title>Scholarship Editor</Modal.Title>
                     </Modal.Header>
