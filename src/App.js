@@ -19,6 +19,8 @@ import { AddnSaveModal } from "./components/Modal";
 import * as Constants from "./components/constants";
 import { ScholarCard } from "./components/ScholarCard";
 import { ViewModal } from "./components/ViewModal";
+import { ModalSignUp } from "./components/ModalSignUp";
+import { ModalSignIn } from "./components/ModalSignIn";
 
 export class App extends Component {
   constructor(props) {
@@ -29,7 +31,11 @@ export class App extends Component {
       curSchol: Constants.blankSchol,
       modalEditorShow: false,
       modalViewerShow: false,
+      modalSignInShow: false,
+      modalSignUpShow: true,
       loadedScholarship: false,
+      userGroup: null,
+      username: null,
     };
     console.log(this.state.curSchol);
     console.log(Constants.blankSchol);
@@ -54,6 +60,23 @@ export class App extends Component {
   handleViewerShow = () => {
     this.setState({ modalViewerShow: true });
     console.log("open plz");
+  };
+
+  handleSignInClose = () => {
+    this.setState({ modalSignInShow: false });
+  };
+
+  handleSignInShow = () => {
+    this.setState({ modalSignInShow: true });
+  };
+
+  handleSignUpClose = () => {
+    this.setState({ modalSignUpShow: false });
+  };
+
+  handleSignUpShow = () => {
+    this.setState({ modalSignUpShow: true });
+    console.log(this.state.modalSignUpShow);
   };
 
   resetSelection = () => {
@@ -94,7 +117,11 @@ export class App extends Component {
         >
           <SideBar pageWrapId="page-wrap" />
           <main id="page-wrap">
-            <Header handleEditShow={this.handleEditShow} />
+            <Header
+              handleEditShow={this.handleEditShow}
+              handleSignUpShow={this.handleSignUpShow}
+              handleSignInShow={this.handleSignInShow}
+            />
 
             <AddnSaveModal
               handleEditClose={this.handleEditClose}
@@ -112,6 +139,16 @@ export class App extends Component {
               resetSelection={this.resetSelection}
               curSchol={this.state.curSchol}
               modalViewerShow={this.state.modalViewerShow}
+            />
+
+            <ModalSignIn
+              handleSignInClose={this.handleSignInClose}
+              modalSignInShow={this.state.modalSignInShow}
+            />
+
+            <ModalSignUp
+              handleSignUpClose={this.handleSignUpClose}
+              modalSignUpShow={this.state.modalSignUpShow}
             />
 
             <Heading level={2}>Current Scholarships</Heading>

@@ -34,10 +34,18 @@ export class Header extends React.Component {
             </div>
 
             <div className="signed-out">
-              <Button variant="primary" className="p-2">
+              <Button
+                variant="primary"
+                className="p-2"
+                onClick={this.props.handleSignInShow}
+              >
                 Sign In
               </Button>
-              <Button variant="primary" className="p-2">
+              <Button
+                variant="primary"
+                className="p-2"
+                onClick={this.props.handleSignUpShow}
+              >
                 Sign Up
               </Button>
             </div>

@@ -294,20 +294,41 @@ export class AddnSaveModal extends React.Component {
                   onChange={this.handleInputChange}
                 />
               </InputGroup>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={this.clearForm}>
-                  Clear
-                </Button>
-                <Button variant="secondary" onClick={this.close}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={this.saveAndQuit}>
-                  Save & Close
-                </Button>
-                <Button variant="primary" onClick={this.saveAndContinue}>
-                  Save & Continue
-                </Button>
-              </Modal.Footer>
+
+              <div className="container">
+                <div
+                  className="btn-group class w-100"
+                  role="group"
+                  aria-label="Basic example"
+                >
+                  <Modal.Footer>
+                    <Button
+                      className="btn-light btn-outline-danger p-2"
+                      onClick={this.clearForm}
+                    >
+                      Clear
+                    </Button>
+                    <Button
+                      className="btn-light btn-outline-danger p-2"
+                      onClick={this.close}
+                    >
+                      Close
+                    </Button>
+                    <Button
+                      className="btn-light btn btn-outline-success p-2"
+                      onClick={this.saveAndQuit}
+                    >
+                      Save & Close
+                    </Button>
+                    <Button
+                      className="btn-light btn btn-outline-success p-2"
+                      onClick={this.saveAndContinue}
+                    >
+                      Save & Continue
+                    </Button>
+                  </Modal.Footer>
+                </div>
+              </div>
             </Form>
           </Modal.Body>
         </Modal>
