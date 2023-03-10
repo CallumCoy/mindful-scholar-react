@@ -302,30 +302,38 @@ export class AddnSaveModal extends React.Component {
                   aria-label="Basic example"
                 >
                   <Modal.Footer>
-                    <Button
-                      className="btn-light btn-outline-danger p-2"
-                      onClick={this.clearForm}
-                    >
-                      Clear
-                    </Button>
-                    <Button
-                      className="btn-light btn-outline-danger p-2"
-                      onClick={this.close}
-                    >
-                      Close
-                    </Button>
-                    <Button
-                      className="btn-light btn btn-outline-success p-2"
-                      onClick={this.saveAndQuit}
-                    >
-                      Save & Close
-                    </Button>
-                    <Button
-                      className="btn-light btn btn-outline-success p-2"
-                      onClick={this.saveAndContinue}
-                    >
-                      Save & Continue
-                    </Button>
+                    <div className="container">
+                      <div
+                        className="btn-group class w-100"
+                        role="group"
+                        aria-label="Basic example"
+                      >
+                        <Button
+                          className="btn-light btn-outline-danger p-2"
+                          onClick={this.clearForm}
+                        >
+                          Clear
+                        </Button>
+                        <Button
+                          className="btn-light btn-outline-danger p-2"
+                          onClick={this.close}
+                        >
+                          Close
+                        </Button>
+                        <Button
+                          className="btn-light btn btn-outline-success p-2"
+                          onClick={this.saveAndQuit}
+                        >
+                          Save & Close
+                        </Button>
+                        <Button
+                          className="btn-light btn btn-outline-success p-2"
+                          onClick={this.saveAndContinue}
+                        >
+                          Save & Continue
+                        </Button>
+                      </div>
+                    </div>
                   </Modal.Footer>
                 </div>
               </div>

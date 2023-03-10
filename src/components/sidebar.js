@@ -1,6 +1,7 @@
 import React from "react";
 import { scaleDown as Menu } from "react-burger-menu";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import "./sidebar.css";
@@ -107,6 +108,10 @@ export class SideBar extends React.Component {
                 aria-describedby="basic-addon1"
               />
             </InputGroup>
+            <br />
+            <Button className="btn-light btn btn-outline-success w-100">
+              filter
+            </Button>
           </div>
         </div>
       </Menu>

@@ -32,7 +32,7 @@ export class App extends Component {
       modalEditorShow: false,
       modalViewerShow: false,
       modalSignInShow: false,
-      modalSignUpShow: true,
+      modalSignUpShow: false,
       loadedScholarship: false,
       userGroup: null,
       username: null,
@@ -167,7 +167,6 @@ export class App extends Component {
                 ))}
               </div>
             </View>
-            <button onClick={this.fetchNotes}>Fetch Scholarships</button>
           </main>
         </div>
       </View>

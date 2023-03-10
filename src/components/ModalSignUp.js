@@ -97,28 +97,28 @@ export class ModalSignUp extends React.Component {
                 </InputGroup>
 
                 <br />
-                <div className="container">
-                  <div
-                    className="btn-group class w-100"
-                    role="group"
-                    aria-label="Basic example"
-                  >
-                    <Modal.Footer>
+                <Modal.Footer>
+                  <div className="container">
+                    <div
+                      className="btn-group class w-100"
+                      role="group"
+                      aria-label="Basic example"
+                    >
                       <Button
-                        className="btn-light btn-outline-danger p-2"
+                        className="btn-light btn-outline-danger"
                         onClick={this.handleSignUpClose}
                       >
                         Close
                       </Button>
                       <Button
-                        className="btn-light btn btn-outline-success p-2"
+                        className="btn-light btn btn-outline-success"
                         type="submit"
                       >
                         Submit
                       </Button>
-                    </Modal.Footer>
+                    </div>
                   </div>
-                </div>
+                </Modal.Footer>
               </Form>
             </div>
           </Modal.Body>

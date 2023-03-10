@@ -20,34 +20,44 @@ export class Header extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto"></Nav>
-            <div className="signed-in">
-              <Button
-                variant="primary"
-                className="p-2"
-                onClick={this.props.handleEditShow}
+
+            <div className="container">
+              <div
+                className="btn-group class w-100"
+                role="group"
+                aria-label="Basic example"
               >
-                Create
-              </Button>
-              <Button variant="secondary" className="p-2">
-                Sign Out
-              </Button>
+                <Button
+                  className="btn-light btn btn-outline-success"
+                  onClick={this.props.handleEditShow}
+                >
+                  Create
+                </Button>
+                <Button className="btn-light btn-outline-danger">
+                  Sign Out
+                </Button>
+              </div>
             </div>
 
-            <div className="signed-out">
-              <Button
-                variant="primary"
-                className="p-2"
-                onClick={this.props.handleSignInShow}
+            <div className="container">
+              <div
+                className="btn-group class w-100"
+                role="group"
+                aria-label="Basic example"
               >
-                Sign In
-              </Button>
-              <Button
-                variant="primary"
-                className="p-2"
-                onClick={this.props.handleSignUpShow}
-              >
-                Sign Up
-              </Button>
+                <Button
+                  className="btn-light btn-outline-info p-2"
+                  onClick={this.props.handleSignUpShow}
+                >
+                  Sign Up
+                </Button>
+                <Button
+                  className="btn-light btn btn-outline-success p-2"
+                  onClick={this.props.handleSignInShow}
+                >
+                  Sign In
+                </Button>
+              </div>
             </div>
           </Navbar.Collapse>
         </Container>
