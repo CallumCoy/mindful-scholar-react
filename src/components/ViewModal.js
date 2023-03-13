@@ -50,18 +50,25 @@ export class ViewModal extends React.Component {
 
             <br />
 
-            <label className="light-text">Description</label>
-            <div className="mb-3">{this.props.curSchol.Description || ""}</div>
+            <label className="light-text definition">Description</label>
+
+            <br />
+
+            <textarea
+              className="mb-3 w-100"
+              rows="8"
+              value={this.props.curSchol.Description || ""}
+            ></textarea>
 
             <br />
 
             <label className="light-text">ApplicationLink</label>
             <div className="mb-3">
               <a
-                href={this.state.ApplicationLink || ""}
+                href={this.props.curSchol.ApplicationLink}
                 className="link-success"
               >
-                {this.state.ApplicationLink || ""}
+                {this.props.curSchol.ApplicationLink}
               </a>
             </div>
 

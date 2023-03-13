@@ -35,17 +35,18 @@ export class ScholarCard extends Component {
           </h5>
           <TextTruncate text={this.props.Scholarship.Description} line={3} />
           <br />
+          <TextTruncate
+            text={"Provider: " + this.props.Scholarship.Provider}
+            line={1}
+          />
           <div className="container">
             <div className="row">
               <div className="col-sm">
-                GPA Range: {this.props.Scholarship.MinGPA} -{" "}
-                {this.props.Scholarship.MaxGPA}
+                GPA Range: {this.props.Scholarship.minGPA} -{" "}
+                {this.props.Scholarship.maxGPA}
               </div>
               <div className="col-sm">
                 Value: ${this.props.Scholarship.Amount}
-              </div>
-              <div className="col-sm">
-                Provider: {this.props.Scholarship.Provider}
               </div>
             </div>
           </div>
@@ -64,12 +65,16 @@ export class ScholarCard extends Component {
               <Button
                 className="btn-light btn btn-outline-success p-2"
                 onClick={this.manageEdit}
+                hidden={!this.props.loggedIn}
+                disabled={!this.props.loggedIn}
               >
                 Edit
               </Button>
               <Button
                 className="btn-light btn-outline-danger p-2"
                 onClick={() => this.deleteScholarship(this.state)}
+                hidden={!this.props.loggedIn}
+                disabled={!this.props.loggedIn}
               >
                 Delete
               </Button>

@@ -2,7 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import "@aws-amplify/ui-react/styles.css";
-import { API } from "aws-amplify";
+import { API, Auth } from "aws-amplify";
 import {
   Button,
   Flex,
@@ -34,16 +34,19 @@ export class App extends Component {
       modalSignInShow: false,
       modalSignUpShow: false,
       loadedScholarship: false,
+      loggedIn: true,
       userGroup: null,
-      username: null,
     };
-    console.log(this.state.curSchol);
-    console.log(Constants.blankSchol);
 
     this.fetchNotes = this.fetchNotes.bind(this);
     this.deleteScholarship = this.deleteScholarship.bind(this);
+    this.getLoginStatus = this.getLoginStatus.bind(this);
     this.setCurSchol = this.setCurSchol.bind(this);
   }
+
+  isEmpty = (str) => {
+    return !str || str.length === 0;
+  };
 
   handleEditClose = () => {
     this.setState({ modalEditorShow: false });
@@ -59,7 +62,6 @@ export class App extends Component {
 
   handleViewerShow = () => {
     this.setState({ modalViewerShow: true });
-    console.log("open plz");
   };
 
   handleSignInClose = () => {
@@ -76,7 +78,6 @@ export class App extends Component {
 
   handleSignUpShow = () => {
     this.setState({ modalSignUpShow: true });
-    console.log(this.state.modalSignUpShow);
   };
 
   resetSelection = () => {
@@ -85,8 +86,17 @@ export class App extends Component {
 
   setCurSchol(scholarship) {
     this.setState({ curSchol: scholarship });
-    console.log("states");
-    console.log(this.state.curSchol);
+  }
+
+  async getLoginStatus() {
+    var status;
+    try {
+      status = await Auth.currentSession().then((res) => {
+        this.setState({ loggedIn: true });
+      });
+    } catch (err) {
+      this.setState({ loggedIn: false });
+    }
   }
 
   async fetchNotes() {
@@ -109,7 +119,7 @@ export class App extends Component {
 
   render() {
     return (
-      <View className="App">
+      <View className="App" onLoad={this.getLoginStatus}>
         <div
           onLoad={this.fetchNotes}
           id="outer-container"
@@ -121,6 +131,9 @@ export class App extends Component {
               handleEditShow={this.handleEditShow}
               handleSignUpShow={this.handleSignUpShow}
               handleSignInShow={this.handleSignInShow}
+              resetSelection={this.resetSelection}
+              getLoginStatus={this.getLoginStatus}
+              loggedIn={this.state.loggedIn}
             />
 
             <AddnSaveModal
@@ -143,6 +156,7 @@ export class App extends Component {
 
             <ModalSignIn
               handleSignInClose={this.handleSignInClose}
+              getLoginStatus={this.getLoginStatus}
               modalSignInShow={this.state.modalSignInShow}
             />
 
@@ -160,9 +174,10 @@ export class App extends Component {
                     handleEditShow={this.handleEditShow}
                     handleViewerShow={this.handleViewerShow}
                     setCurSchol={this.setCurSchol}
-                    curSchol={this.curSchol}
                     Scholarship={Scholarship}
+                    curSchol={this.curSchol}
                     modalViewerShow={this.modalViewerShow}
+                    loggedIn={this.state.loggedIn}
                   />
                 ))}
               </div>

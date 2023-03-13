@@ -5,12 +5,44 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import "./ModalSignIn.css";
+import { Auth } from "aws-amplify";
 
 export class ModalSignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      username: "",
+      password: "",
+    };
     this.handleSignInClose = this.props.handleSignInClose;
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    this.setState({ [name]: value });
+  };
+
+  async handleSubmit(event) {
+    event.preventDefault();
+    const username = this.state.username;
+    const password = this.state.password;
+
+    console.log(username, password);
+    console.log(this.state);
+
+    try {
+      await Auth.signIn(username, password).then((res) => {
+        this.setState(username, "");
+        this.setState(password, "");
+        this.props.getLoginStatus();
+        this.handleSignInClose();
+      });
+    } catch (err) {
+      console.log("login Error: ", err);
+    }
   }
 
   render() {
@@ -22,11 +54,11 @@ export class ModalSignIn extends React.Component {
           onHide={this.handleSignInClose}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Create Account</Modal.Title>
+            <Modal.Title>Login</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
-              <Form>
+              <Form onSubmit={this.handleSubmit}>
                 <Form.Label className="light-text">username</Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
@@ -35,6 +67,7 @@ export class ModalSignIn extends React.Component {
                     aria-label="username"
                     aria-describedby="basic-addon1"
                     value={this.state.username || ""}
+                    onChange={this.handleInputChange}
                   />
                 </InputGroup>
 
@@ -42,11 +75,13 @@ export class ModalSignIn extends React.Component {
                 <Form.Label className="light-text">Password</Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
-                    name="Password"
-                    placeholder="Password"
-                    aria-label="Password"
+                    name="password"
+                    type="password"
+                    placeholder="password"
+                    aria-label="password"
                     aria-describedby="basic-addon1"
-                    value={this.state.Password || ""}
+                    value={this.state.password || ""}
+                    onChange={this.handleInputChange}
                   />
                 </InputGroup>
 

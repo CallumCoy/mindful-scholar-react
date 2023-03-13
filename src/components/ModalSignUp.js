@@ -11,17 +11,20 @@ export class ModalSignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticating: Auth.currentUserCredentials().authenticated || null,
+      email: "",
+      password: "",
+      AuthentificationCode: "",
     };
     this.handleSignUpClose = this.props.handleSignUpClose;
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInputChange(event) {
+  handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     this.setState({ [name]: value });
-  }
+  };
 
   loginCheck = () => {
     if (this.props.username != null) {
@@ -31,14 +34,28 @@ export class ModalSignUp extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    Auth.signUp({
-      username: this.state.username,
-      password: this.state.password,
-      autoSignIn: true,
-    });
-    this.setState({ authenticating: true });
-    this.setState({ username: null });
-    this.setState({ password: null });
+    const password = this.state.password;
+    const email = this.state.email;
+
+    try {
+      Auth.signUp({
+        username: email,
+        password: password,
+        attributes: {
+          email: email,
+        },
+        validationData: [],
+        autoSignIn: {
+          enabled: true,
+        },
+      }).then((res) => {
+        if (res.userConfirmed) {
+          this.handleSignUpClose();
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
@@ -54,23 +71,8 @@ export class ModalSignUp extends React.Component {
             <Modal.Title>Create Account</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div show={this.state.authenticating}>auth code</div>
-
             <div show={!this.state.authenticating}>
               <Form onSubmit={this.handleSubmit}>
-                <Form.Label className="light-text">username</Form.Label>
-                <InputGroup className="mb-3">
-                  <Form.Control
-                    name="username"
-                    placeholder="username"
-                    aria-label="username"
-                    aria-describedby="basic-addon1"
-                    value={this.state.username || ""}
-                    onChange={this.handleInputChange}
-                  />
-                </InputGroup>
-
-                <br />
                 <Form.Label className="light-text">email</Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
@@ -78,7 +80,7 @@ export class ModalSignUp extends React.Component {
                     placeholder="email"
                     aria-label="email"
                     aria-describedby="basic-addon1"
-                    value={this.state.email || ""}
+                    value={this.state.email}
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
@@ -87,16 +89,18 @@ export class ModalSignUp extends React.Component {
                 <Form.Label className="light-text">Password</Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
-                    name="Password"
-                    placeholder="Password"
-                    aria-label="Password"
+                    name="password"
+                    type="password"
+                    placeholder="password"
+                    aria-label="password"
                     aria-describedby="basic-addon1"
-                    value={this.state.Password || ""}
+                    value={this.state.password}
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
 
                 <br />
+
                 <Modal.Footer>
                   <div className="container">
                     <div

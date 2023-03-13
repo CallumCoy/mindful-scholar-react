@@ -1,9 +1,9 @@
-.defaultNavbar {
-  max-height: 80px;
-}
-
 .defaultImg {
   margin: auto;
   height: auto;
   max-height: 50px;
+}
+
+.header-button-container {
+  max-width: 200px;
 }

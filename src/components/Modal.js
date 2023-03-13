@@ -14,7 +14,7 @@ import {
 export class AddnSaveModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props;
+    this.state = props.curSchol;
 
     this.handleEditClose = props.handleEditClose;
 
@@ -30,7 +30,7 @@ export class AddnSaveModal extends React.Component {
   }
 
   clearForm = () => {
-    this.setState({ scholarship: Constants.blankSchol });
+    this.setState(Constants.blankSchol);
   };
 
   saveAndQuit = () => {
@@ -40,6 +40,7 @@ export class AddnSaveModal extends React.Component {
 
   saveAndContinue = () => {
     this.CreateScholarship();
+    this.clearForm();
   };
 
   async CreateScholarship() {
@@ -121,7 +122,6 @@ export class AddnSaveModal extends React.Component {
                 id="Description"
                 name="Description"
                 value={this.state.Description || ""}
-                onChange={this.handleInputChange}
               ></textarea>
 
               <br />
