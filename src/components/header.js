@@ -38,7 +38,7 @@ export class Header extends React.Component {
     return (
       <Navbar bg="light" expand="lg">
         <Container>
-          <img src="/Mindful_Scholars_Logo.png" className="defaultImg" />
+          <img src="/Mindful_Scholars_Logo.png" alt="" className="defaultImg" />
           <Navbar.Brand>Mindful Scholars</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

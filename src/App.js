@@ -3,14 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import "@aws-amplify/ui-react/styles.css";
 import { API, Auth } from "aws-amplify";
-import {
-  Button,
-  Flex,
-  Heading,
-  Text,
-  TextField,
-  View,
-} from "@aws-amplify/ui-react";
+import { Heading, View } from "@aws-amplify/ui-react";
 import { listScholarships } from "./graphql/queries";
 import { deleteScholarship as deleteScholarshipMutation } from "./graphql/mutations";
 import { SideBar } from "./components/sidebar";
@@ -89,9 +82,8 @@ export class App extends Component {
   }
 
   async getLoginStatus() {
-    var status;
     try {
-      status = await Auth.currentSession().then((res) => {
+      await Auth.currentSession().then((res) => {
         this.setState({ loggedIn: true });
       });
     } catch (err) {
