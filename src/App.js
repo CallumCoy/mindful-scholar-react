@@ -14,6 +14,7 @@ import { ScholarCard } from "./components/ScholarCard";
 import { ViewModal } from "./components/ViewModal";
 import { ModalSignUp } from "./components/ModalSignUp";
 import { ModalSignIn } from "./components/ModalSignIn";
+import { ModalMassCreaion } from "./components/ModalMassInput";
 
 export class App extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ export class App extends Component {
       modalViewerShow: false,
       modalSignInShow: false,
       modalSignUpShow: false,
+      modalMassCreateShow: false,
       loadedScholarship: false,
       loggedIn: true,
       userGroup: null,
@@ -47,6 +49,23 @@ export class App extends Component {
 
   handleEditShow = () => {
     this.setState({ modalEditorShow: true });
+    this.setState({ modalMassCreateShow: false });
+    this.setState({ modalViewerShow: false });
+    this.setState({ modalSignInShow: false });
+    this.setState({ modalSignUpShow: false });
+  };
+
+  handleMassCreateClose = () => {
+    this.setState({ modalMassCreateShow: false });
+  };
+
+  handleMassCreateShow = () => {
+    this.setState({ modalMassCreateShow: true });
+    this.setState({ modalEditorShow: false });
+    this.setState({ modalViewerShow: false });
+    this.setState({ modalSignInShow: false });
+    this.setState({ modalSignUpShow: false });
+    console.log(this.state.modalMassCreateShow);
   };
 
   handleViewerClose = () => {
@@ -55,6 +74,10 @@ export class App extends Component {
 
   handleViewerShow = () => {
     this.setState({ modalViewerShow: true });
+    this.setState({ modalMassCreateShow: false });
+    this.setState({ modalEditorShow: false });
+    this.setState({ modalSignInShow: false });
+    this.setState({ modalSignUpShow: false });
   };
 
   handleSignInClose = () => {
@@ -63,6 +86,10 @@ export class App extends Component {
 
   handleSignInShow = () => {
     this.setState({ modalSignInShow: true });
+    this.setState({ modalMassCreateShow: false });
+    this.setState({ modalEditorShow: false });
+    this.setState({ modalViewerShow: false });
+    this.setState({ modalSignUpShow: false });
   };
 
   handleSignUpClose = () => {
@@ -71,6 +98,10 @@ export class App extends Component {
 
   handleSignUpShow = () => {
     this.setState({ modalSignUpShow: true });
+    this.setState({ modalMassCreateShow: false });
+    this.setState({ modalEditorShow: false });
+    this.setState({ modalViewerShow: false });
+    this.setState({ modalSignInShow: false });
   };
 
   resetSelection = () => {
@@ -123,6 +154,7 @@ export class App extends Component {
               handleEditShow={this.handleEditShow}
               handleSignUpShow={this.handleSignUpShow}
               handleSignInShow={this.handleSignInShow}
+              handleMassCreateShow={this.handleMassCreateShow}
               resetSelection={this.resetSelection}
               getLoginStatus={this.getLoginStatus}
               loggedIn={this.state.loggedIn}
@@ -135,6 +167,12 @@ export class App extends Component {
               curSchol={this.state.curSchol}
               modalEditorShow={this.state.modalEditorShow}
               notes={this.state.notes}
+            />
+
+            <ModalMassCreaion
+              handleMassCreateClose={this.handleMassCreateClose}
+              fetchNotes={this.fetchNotes}
+              modalMassCreateShow={this.state.modalMassCreateShow}
             />
 
             <ViewModal

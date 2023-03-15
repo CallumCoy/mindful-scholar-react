@@ -12,6 +12,7 @@ export class Header extends React.Component {
     super(props);
 
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.massCreation = this.massCreation.bind(this);
   }
 
   async createScholarship() {
@@ -19,6 +20,14 @@ export class Header extends React.Component {
       if (this.props.loggedIn) {
         this.props.resetSelection();
         this.props.handleEditShow();
+      }
+    });
+  }
+
+  async massCreation() {
+    await this.props.getLoginStatus().then(() => {
+      if (this.props.loggedIn) {
+        this.props.handleMassCreateShow();
       }
     });
   }
@@ -51,6 +60,14 @@ export class Header extends React.Component {
                   role="group"
                   aria-label="Basic example"
                 >
+                  <Button
+                    className="btn-light btn btn-outline-caution"
+                    onClick={this.massCreation}
+                    disabled={!this.props.loggedIn}
+                    hidden={!this.props.loggedIn}
+                  >
+                    Mass Add
+                  </Button>
                   <Button
                     className="btn-light btn btn-outline-success"
                     onClick={this.createScholarship}
