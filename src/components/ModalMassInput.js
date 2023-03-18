@@ -54,17 +54,20 @@ export class ModalMassCreaion extends React.Component {
     console.log("adding: ", dataPoint);
     const data = {
       ScholarshipName: dataPoint.ScholarshipName,
-      ExpirationDate: dataPoint.ExpirationDate || { Date },
-      OpeningDate: dataPoint.OpeningDate || { Date },
-      Amount: dataPoint.Amount || 500,
-      ApplicationLink: dataPoint.ApplicationLink || "www.example.com",
+      ExpirationDate: Date(dataPoint.ExpirationDate) || Date,
+      OpeningDate: Date(dataPoint.OpeningDate) || Date,
+      Amount:
+        dataPoint.Amount == ""
+          ? null
+          : dataPoint.Amount.match(/(\d|\.)/g).join(""),
+      ApplicationLink: dataPoint.ApplicationLink || "",
       CitizenshipStatus: dataPoint.CitizenshipStatus || "",
       CollegeLevel: dataPoint.CollegeLevel || "",
       Description: dataPoint.Description || "",
       Ethnicity: dataPoint.Ethnicity || "",
       Interests: dataPoint.Interests || "",
-      maxGPA: dataPoint.maxGPA || 0,
-      minGPA: dataPoint.minGPA || 4,
+      maxGPA: dataPoint.maxGPA || 4,
+      minGPA: dataPoint.minGPA || 0,
       Provider: dataPoint.Provider || "",
       StateOfResidency: dataPoint.StateOfResidency || "",
       TypeOfProgram: dataPoint.TypeOfProgram || "",

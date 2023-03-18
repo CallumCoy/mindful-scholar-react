@@ -13,6 +13,7 @@ export class Header extends React.Component {
 
     this.handleSignOut = this.handleSignOut.bind(this);
     this.massCreation = this.massCreation.bind(this);
+    this.createScholarship = this.createScholarship.bind(this);
   }
 
   async createScholarship() {

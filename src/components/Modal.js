@@ -122,6 +122,7 @@ export class AddnSaveModal extends React.Component {
                 id="Description"
                 name="Description"
                 value={this.state.Description || ""}
+                onChange={this.handleInputChange}
               ></textarea>
 
               <br />
@@ -199,7 +200,7 @@ export class AddnSaveModal extends React.Component {
                   name="minGPA"
                   type="number"
                   min={0}
-                  max={4}
+                  max={this.state.maxGPA}
                   placeholder="4.0"
                   aria-label="MinGPA"
                   aria-describedby="basic-addon1"
@@ -215,7 +216,7 @@ export class AddnSaveModal extends React.Component {
                 <Form.Control
                   name="maxGPA"
                   type="number"
-                  min={0}
+                  min={this.state.minGPA}
                   max={4}
                   placeholder="4.0"
                   aria-label="MaxGPA"
