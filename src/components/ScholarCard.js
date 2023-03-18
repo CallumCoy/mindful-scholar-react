@@ -30,8 +30,11 @@ export class ScholarCard extends Component {
     return (
       <div className="card my-2 mx-auto" key={this.props.Scholarship.id}>
         <div className="card-body">
-          <h5 className="card-title">
-            {this.props.Scholarship.ScholarshipName}
+          <h5>
+            <TextTruncate
+              text={this.props.Scholarship.ScholarshipName}
+              line={1}
+            />
           </h5>
           <TextTruncate text={this.props.Scholarship.Description} line={3} />
           <br />
