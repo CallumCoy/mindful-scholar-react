@@ -10,7 +10,7 @@ import { SideBar } from "./components/sidebar";
 import { Header } from "./components/header";
 import { AddnSaveModal } from "./components/Modal";
 import * as Constants from "./components/constants";
-import { ScholarCard } from "./components/ScholarCard";
+import { CardHolder } from "./components/CardHolder";
 import { ViewModal } from "./components/ViewModal";
 import { ModalSignUp } from "./components/ModalSignUp";
 import { ModalSignIn } from "./components/ModalSignIn";
@@ -21,7 +21,7 @@ export class App extends Component {
     super(props);
 
     this.state = {
-      notes: [],
+      scholarships: [],
       curSchol: Constants.blankSchol,
       modalEditorShow: false,
       modalViewerShow: false,
@@ -33,7 +33,7 @@ export class App extends Component {
       userGroup: null,
     };
 
-    this.fetchNotes = this.fetchNotes.bind(this);
+    this.fetchScholarships = this.fetchScholarships.bind(this);
     this.deleteScholarship = this.deleteScholarship.bind(this);
     this.getLoginStatus = this.getLoginStatus.bind(this);
     this.setCurSchol = this.setCurSchol.bind(this);
@@ -122,21 +122,22 @@ export class App extends Component {
     }
   }
 
-  async fetchNotes() {
+  async fetchScholarships() {
     this.setState({ loadedScholarship: true });
     const apiData = await API.graphql({ query: listScholarships });
-    const notesFromAPI = apiData.data.listScholarships.items;
-    this.setState({ notes: notesFromAPI });
+    const scholarshipsFromAPI = apiData.data.listScholarships.items;
+    this.setState({ scholarships: scholarshipsFromAPI });
   }
 
   async deleteScholarship({ id }) {
-    const newScholarships = this.state.notes.filter(
-      (scholarship) => scholarship.ScholarshipName !== id
-    );
-    this.setState({ scholarships: newScholarships });
     await API.graphql({
       query: deleteScholarshipMutation,
       variables: { input: { id } },
+    }).then(() => {
+      const newScholarships = this.state.scholarships.filter(
+        (scholarship) => scholarship.id !== id
+      );
+      this.setState({ scholarships: newScholarships });
     });
   }
 
@@ -144,7 +145,7 @@ export class App extends Component {
     return (
       <View className="App" onLoad={this.getLoginStatus}>
         <div
-          onLoad={this.fetchNotes}
+          onLoad={this.fetchScholarships}
           id="outer-container"
           className="background"
         >
@@ -162,16 +163,16 @@ export class App extends Component {
 
             <AddnSaveModal
               handleEditClose={this.handleEditClose}
-              fetchNotes={this.fetchNotes}
+              fetchScholarships={this.fetchScholarships}
               resetSelection={this.resetSelection}
               curSchol={this.state.curSchol}
               modalEditorShow={this.state.modalEditorShow}
-              notes={this.state.notes}
+              scholarships={this.state.scholarships}
             />
 
             <ModalMassCreaion
               handleMassCreateClose={this.handleMassCreateClose}
-              fetchNotes={this.fetchNotes}
+              fetchScholarships={this.fetchScholarships}
               modalMassCreateShow={this.state.modalMassCreateShow}
             />
 
@@ -195,23 +196,16 @@ export class App extends Component {
               modalSignUpShow={this.state.modalSignUpShow}
             />
 
-            <Heading level={2}>Current Scholarships</Heading>
-            <View margin="3rem 0">
-              <div className="row m-auto">
-                {this.state.notes.map((Scholarship) => (
-                  <ScholarCard
-                    deleteScholarship={this.deleteScholarship}
-                    handleEditShow={this.handleEditShow}
-                    handleViewerShow={this.handleViewerShow}
-                    setCurSchol={this.setCurSchol}
-                    Scholarship={Scholarship}
-                    curSchol={this.curSchol}
-                    modalViewerShow={this.modalViewerShow}
-                    loggedIn={this.state.loggedIn}
-                  />
-                ))}
-              </div>
-            </View>
+            <CardHolder
+              deleteScholarship={this.deleteScholarship}
+              handleEditShow={this.handleEditShow}
+              handleViewerShow={this.handleViewerShow}
+              setCurSchol={this.setCurSchol}
+              scholarships={this.state.scholarships}
+              curSchol={this.curSchol}
+              modalViewerShow={this.modalViewerShow}
+              loggedIn={this.state.loggedIn}
+            />
           </main>
         </div>
       </View>
