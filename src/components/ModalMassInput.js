@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import {
-  createScholarship as createNoteMutation,
+  createScholarship as createscholarshipMutation,
   updateScholarship as updateScholarshipMutation,
 } from "../graphql/mutations";
 
@@ -47,7 +47,7 @@ export class ModalMassCreaion extends React.Component {
       this.CreateScholarship(scholarship);
     }
 
-    this.props.fetchNotes();
+    this.props.fetchScholarships();
   }
 
   async CreateScholarship(dataPoint) {
@@ -76,7 +76,7 @@ export class ModalMassCreaion extends React.Component {
 
     if (!data.id) {
       await API.graphql({
-        query: createNoteMutation,
+        query: createscholarshipMutation,
         variables: { input: data },
       });
     } else {
