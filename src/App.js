@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import "@aws-amplify/ui-react/styles.css";
 import { API, Auth } from "aws-amplify";
-import { Heading, View } from "@aws-amplify/ui-react";
+import { View } from "@aws-amplify/ui-react";
 import { listScholarships } from "./graphql/queries";
 import { deleteScholarship as deleteScholarshipMutation } from "./graphql/mutations";
 import { SideBar } from "./components/sidebar";

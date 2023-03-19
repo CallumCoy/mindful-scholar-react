@@ -1,13 +1,9 @@
 import "./CardHolder.css";
 import React, { Component } from "react";
-import { Heading, View } from "@aws-amplify/ui-react";
+import { View } from "@aws-amplify/ui-react";
 import { ScholarCard } from "./ScholarCard";
 
 export class CardHolder extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="w-100 card-container">

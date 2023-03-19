@@ -1,4 +1,3 @@
-import { Heading } from "@aws-amplify/ui-react";
 import { Auth } from "aws-amplify";
 import React from "react";
 import { Button } from "react-bootstrap";
