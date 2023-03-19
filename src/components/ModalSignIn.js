@@ -13,10 +13,19 @@ export class ModalSignIn extends React.Component {
     this.state = {
       username: "",
       password: "",
+      errorMessage: "",
+      failure: false,
     };
     this.handleSignInClose = this.props.handleSignInClose;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  reset = () => {
+    this.setState({ username: "" });
+    this.setState({ password: "" });
+    this.setState({ errorMessage: "" });
+    this.setState({ failure: false });
+  };
 
   handleInputChange = (event) => {
     const target = event.target;
@@ -30,24 +39,24 @@ export class ModalSignIn extends React.Component {
     const username = this.state.username;
     const password = this.state.password;
 
-    console.log(username, password);
-    console.log(this.state);
+    this.setState({ failure: false });
+    this.setState({ password: "" });
 
     try {
       await Auth.signIn(username, password).then((res) => {
-        this.setState(username, "");
-        this.setState(password, "");
+        this.setState({ username: "" });
         this.props.getLoginStatus();
         this.handleSignInClose();
       });
     } catch (err) {
-      console.log("login Error: ", err);
+      this.setState({ failure: true });
+      console.error("login Error: ", err);
     }
   }
 
   render() {
     return (
-      <div>
+      <div onLoad={this.reset}>
         <Modal
           className="modal-ku"
           show={this.props.modalSignInShow}
@@ -87,6 +96,11 @@ export class ModalSignIn extends React.Component {
 
                 <br />
                 <Modal.Footer>
+                  {this.state.failure && (
+                    <div className="w-100 text-danger text-center">
+                      Invalid Credentials
+                    </div>
+                  )}
                   <div className="container">
                     <div
                       className="btn-group class w-100"
