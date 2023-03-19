@@ -46,4 +46,28 @@
 #page-wrap {
   min-height: 100vh;
   background-color: #b4bad2;
+  background-image: url("../public/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  max-height: 100vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #b8b7ad #373a47;
+}
+
+/* Works on Chrome, Edge, and Safari */
+#page-wrap::-webkit-scrollbar {
+  width: 12px;
+}
+
+#page-wrap::-webkit-scrollbar-track {
+  background: #373a47;
+}
+
+#page-wrap::-webkit-scrollbar-thumb {
+  background-color: #b8b7ad;
+  border-radius: 20px;
+  border: 3px solid #373a47;
 }

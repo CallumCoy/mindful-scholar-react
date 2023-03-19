@@ -11,7 +11,6 @@ export class CardHolder extends Component {
   render() {
     return (
       <div className="w-100 card-container">
-        <Heading level={2}>Current Scholarships</Heading>
         <View margin="3rem 0">
           <div className="row m-auto pr-5">
             {this.props.scholarships.map((Scholarship) => (

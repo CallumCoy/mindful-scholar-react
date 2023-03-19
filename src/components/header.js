@@ -1,3 +1,4 @@
+import { Heading } from "@aws-amplify/ui-react";
 import { Auth } from "aws-amplify";
 import React from "react";
 import { Button } from "react-bootstrap";
@@ -48,21 +49,28 @@ export class Header extends React.Component {
     return (
       <Navbar bg="light" expand="lg">
         <Container>
-          <img src="/Mindful_Scholars_Logo.png" alt="" className="defaultImg" />
-          <Navbar.Brand>Mindful Scholars</Navbar.Brand>
+          <div className="float-start">
+            <img
+              src="/Mindful_Scholars_Logo.png"
+              alt=""
+              className="defaultImg text-left"
+            />
+            <Navbar.Brand>Mindful Scholars</Navbar.Brand>
+          </div>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto"></Nav>
 
             {this.props.loggedIn && (
-              <div className="header-button-container">
+              <div className="header-button-container m-auto">
                 <div
-                  className="btn-group class w-100"
+                  className="btn-group class w-auto"
                   role="group"
                   aria-label="Basic example"
                 >
                   <Button
-                    className="btn-light btn btn-outline-caution"
+                    className="btn-light btn btn-outline-warning"
                     onClick={this.massCreation}
                     disabled={!this.props.loggedIn}
                     hidden={!this.props.loggedIn}
@@ -92,7 +100,7 @@ export class Header extends React.Component {
             {!this.props.loggedIn && (
               <div className="header-button-container">
                 <div
-                  className="btn-group class w-100"
+                  className="btn-group class w-auto"
                   role="group"
                   aria-label="Basic example"
                 >

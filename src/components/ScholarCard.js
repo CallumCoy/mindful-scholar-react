@@ -28,7 +28,7 @@ export class ScholarCard extends Component {
 
   render() {
     return (
-      <div className="card my-2 mx-auto" key={this.props.Scholarship.id}>
+      <div className="card my-2 mx-aut" key={this.props.Scholarship.id}>
         <div className="card-body">
           <h5>
             <TextTruncate

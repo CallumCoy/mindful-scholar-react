@@ -5,5 +5,11 @@
 }
 
 .header-button-container {
-  max-width: 300px;
+  width: 300px;
+}
+
+@media (min-width: 975px) {
+  .header-title {
+    visibility: hidden;
+  }
 }

@@ -147,7 +147,7 @@ export class App extends Component {
         <div
           onLoad={this.fetchScholarships}
           id="outer-container"
-          className="background"
+          className="scrolling background"
         >
           <SideBar pageWrapId="page-wrap" />
           <main id="page-wrap">
