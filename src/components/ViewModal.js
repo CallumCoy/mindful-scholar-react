@@ -1,5 +1,3 @@
-import { API } from "aws-amplify";
-
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -87,7 +85,14 @@ export class ViewModal extends React.Component {
             <br />
 
             <label className="light-text">Amount</label>
-            <div className="mb-3">${this.props.curSchol.Amount || ""}</div>
+            <div className="mb-3">
+              {this.props.curSchol.Amount > 0
+                ? new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  }).format(this.props.curSchol.Amount)
+                : "Varies"}
+            </div>
 
             <br />
 

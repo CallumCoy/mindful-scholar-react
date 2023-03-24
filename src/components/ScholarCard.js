@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TextTruncate from "react-text-truncate";
 import { Button } from "react-bootstrap";
-import Moment from "moment";
 import "./ScholarCard.css";
 
 export class ScholarCard extends Component {
@@ -49,7 +48,13 @@ export class ScholarCard extends Component {
                 {this.props.Scholarship.maxGPA}
               </div>
               <div className="col-sm">
-                Value: ${this.props.Scholarship.Amount}
+                Value:{" "}
+                {this.props.Scholarship.Amount > 0
+                  ? new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    }).format(this.props.Scholarship.Amount)
+                  : "Varies"}
               </div>
             </div>
           </div>
@@ -87,11 +92,17 @@ export class ScholarCard extends Component {
         <div className="card-footer">
           <small className="text-muted">
             Updated on:{" "}
-            {Moment(this.props.Scholarship.updatedAt.Date).format("MMM d YYYY")}{" "}
+            {new Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "2-digit",
+            }).format(new Date(this.props.Scholarship.updatedAt))}
             | Exp. on:{" "}
-            {Moment(this.props.Scholarship.ExpirationDate.Date).format(
-              "MMM d YYYY"
-            )}
+            {new Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "2-digit",
+            }).format(new Date(this.props.Scholarship.ExpirationDate))}
           </small>
         </div>
       </div>
