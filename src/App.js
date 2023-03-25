@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import "@aws-amplify/ui-react/styles.css";
 import { API, Auth } from "aws-amplify";
-import { Heading, View } from "@aws-amplify/ui-react";
+import { View } from "@aws-amplify/ui-react";
 import { listScholarships } from "./graphql/queries";
 import { deleteScholarship as deleteScholarshipMutation } from "./graphql/mutations";
 import { SideBar } from "./components/sidebar";
@@ -15,6 +15,7 @@ import { ViewModal } from "./components/ViewModal";
 import { ModalSignUp } from "./components/ModalSignUp";
 import { ModalSignIn } from "./components/ModalSignIn";
 import { ModalMassCreaion } from "./components/ModalMassInput";
+import { filterSet } from "./components/FilterConstructor";
 
 export class App extends Component {
   constructor(props) {
@@ -65,7 +66,6 @@ export class App extends Component {
     this.setState({ modalViewerShow: false });
     this.setState({ modalSignInShow: false });
     this.setState({ modalSignUpShow: false });
-    console.log(this.state.modalMassCreateShow);
   };
 
   handleViewerClose = () => {
@@ -122,10 +122,29 @@ export class App extends Component {
     }
   }
 
+  resetView = () => {
+    this.setState(
+      this.state.scholarships.forEach((scholarship) => {
+        scholarship.show = true;
+      })
+    );
+  };
+
+  filter = (filters) => {
+    this.setState({
+      scholarships: filterSet(this.state.scholarships, filters),
+    });
+  };
+
   async fetchScholarships() {
     this.setState({ loadedScholarship: true });
     const apiData = await API.graphql({ query: listScholarships });
-    const scholarshipsFromAPI = apiData.data.listScholarships.items;
+    let scholarshipsFromAPI = apiData.data.listScholarships.items;
+
+    scholarshipsFromAPI.forEach((scholarship) => {
+      scholarship.show = true;
+    });
+
     this.setState({ scholarships: scholarshipsFromAPI });
   }
 
@@ -149,7 +168,11 @@ export class App extends Component {
           id="outer-container"
           className="scrolling background"
         >
-          <SideBar pageWrapId="page-wrap" />
+          <SideBar
+            pageWrapId="page-wrap"
+            filter={this.filter}
+            resetView={this.resetView}
+          />
           <main id="page-wrap">
             <Header
               handleEditShow={this.handleEditShow}

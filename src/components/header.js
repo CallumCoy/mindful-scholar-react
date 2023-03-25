@@ -1,4 +1,3 @@
-import { Heading } from "@aws-amplify/ui-react";
 import { Auth } from "aws-amplify";
 import React from "react";
 import { Button } from "react-bootstrap";
@@ -37,11 +36,10 @@ export class Header extends React.Component {
   async handleSignOut() {
     try {
       await Auth.signOut().then((res) => {
-        console.log("logout succ", res);
         this.props.getLoginStatus();
       });
     } catch (err) {
-      console.log("logout failure: ", err);
+      console.error("logout failure: ", err);
     }
   }
 
