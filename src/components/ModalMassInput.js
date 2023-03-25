@@ -40,9 +40,7 @@ export class ModalMassCreaion extends React.Component {
   async CreateScholarships() {
     const parsedList = this.createJson(this.state.massInput);
 
-    console.log(parsedList);
     for (let i = 0; i < parsedList.length; i++) {
-      console.log(i);
       const scholarship = parsedList[i];
       this.CreateScholarship(scholarship);
     }
@@ -51,7 +49,6 @@ export class ModalMassCreaion extends React.Component {
   }
 
   async CreateScholarship(dataPoint) {
-    console.log("adding: ", dataPoint);
     const data = {
       ScholarshipName: dataPoint.ScholarshipName,
       ExpirationDate:

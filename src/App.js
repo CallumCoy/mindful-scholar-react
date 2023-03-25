@@ -66,7 +66,6 @@ export class App extends Component {
     this.setState({ modalViewerShow: false });
     this.setState({ modalSignInShow: false });
     this.setState({ modalSignUpShow: false });
-    console.log(this.state.modalMassCreateShow);
   };
 
   handleViewerClose = () => {
@@ -125,11 +124,6 @@ export class App extends Component {
 
   resetView = () => {
     this.setState(
-      this.state.scholarships.forEach((scholarship) => {
-        scholarship.show = true;
-      })
-    );
-    console.log(
       this.state.scholarships.forEach((scholarship) => {
         scholarship.show = true;
       })

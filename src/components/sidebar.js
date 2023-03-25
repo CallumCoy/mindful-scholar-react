@@ -21,12 +21,24 @@ export class SideBar extends React.Component {
   };
 
   resetFilter = () => {
-    this.props.resetView();
+    this.setState(blankFilter);
     this.props.filter(null);
   };
 
   handleSubmit = () => {
-    this.props.filter(this.state);
+    this.props.filter({
+      name: this.state.name.toLowerCase(),
+      date: this.state.date,
+      minGPA: parseFloat(this.state.minGPA),
+      maxGPA: parseFloat(this.state.maxGPA),
+      backer: this.state.backer.toLowerCase(),
+      amount: parseFloat(this.state.amount),
+      interests: this.state.interests.toLowerCase(),
+      ethnicity: this.state.ethnicity.toLowerCase(),
+      citizenship: this.state.citizenship.toLowerCase(),
+      education: this.state.education.toLowerCase(),
+      state: this.state.state.toLowerCase(),
+    });
   };
 
   render() {
