@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TextTruncate from "react-text-truncate";
 import { Button } from "react-bootstrap";
 import "./ScholarCard.css";
 

@@ -15,3 +15,17 @@ export const blankSchol = {
   StateOfResidency: "",
   TypeOfProgram: "",
 };
+
+export const blankFilter = {
+  name: "",
+  date: "",
+  minGPA: "",
+  maxGPA: "",
+  backer: "",
+  amount: "",
+  interests: "",
+  ethnicity: "",
+  citizenship: "",
+  education: "",
+  state: "",
+};

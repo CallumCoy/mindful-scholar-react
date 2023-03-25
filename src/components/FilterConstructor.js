@@ -1,7 +1,11 @@
 export function filterSet(scholarships, filters) {
   scholarships.forEach((scholarship) => {
     try {
-      scholarship.show = name(scholarship, filters);
+      if (filters) {
+        scholarship.show = name(scholarship, filters);
+      } else {
+        scholarship.show = true;
+      }
     } catch (err) {
       console.error("filters error caught: ", scholarship.name, err);
       scholarship.show = false;

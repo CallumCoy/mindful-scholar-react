@@ -3,25 +3,14 @@ import { scaleDown as Menu } from "react-burger-menu";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
+import { blankFilter } from "./constants";
 
 import "./sidebar.css";
 
 export class SideBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: null,
-      date: null,
-      minGPA: null,
-      maxGPA: null,
-      backer: null,
-      amount: null,
-      interests: null,
-      ethnicity: null,
-      citizenship: null,
-      education: null,
-      state: null,
-    };
+    this.state = blankFilter;
   }
 
   handleInputChange = (event) => {
@@ -29,6 +18,11 @@ export class SideBar extends React.Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     this.setState({ [name]: value });
+  };
+
+  resetFilter = () => {
+    this.props.resetView();
+    this.props.filter(null);
   };
 
   handleSubmit = () => {
@@ -202,12 +196,26 @@ export class SideBar extends React.Component {
               />
             </InputGroup>
             <br />
-            <Button
-              className="btn-light btn btn-outline-success w-100"
-              onClick={this.handleSubmit}
-            >
-              filter
-            </Button>
+            <div className="container">
+              <div
+                className="btn-group class w-100"
+                role="group"
+                aria-label="Basic example"
+              >
+                <Button
+                  className="btn-light btn-outline-danger p-2"
+                  onClick={this.resetFilter}
+                >
+                  Reset
+                </Button>
+                <Button
+                  className="btn-light btn-outline-success p-2"
+                  onClick={this.handleSubmit}
+                >
+                  filter
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </Menu>

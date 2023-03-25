@@ -123,13 +123,23 @@ export class App extends Component {
     }
   }
 
-  filter = (filters) => {
-    console.log(filterSet(this.state.scholarships, filters));
+  resetView = () => {
+    this.setState(
+      this.state.scholarships.forEach((scholarship) => {
+        scholarship.show = true;
+      })
+    );
+    console.log(
+      this.state.scholarships.forEach((scholarship) => {
+        scholarship.show = true;
+      })
+    );
+  };
 
+  filter = (filters) => {
     this.setState({
       scholarships: filterSet(this.state.scholarships, filters),
     });
-    this.resetSelection();
   };
 
   async fetchScholarships() {
@@ -164,7 +174,11 @@ export class App extends Component {
           id="outer-container"
           className="scrolling background"
         >
-          <SideBar pageWrapId="page-wrap" filter={this.filter} />
+          <SideBar
+            pageWrapId="page-wrap"
+            filter={this.filter}
+            resetView={this.resetView}
+          />
           <main id="page-wrap">
             <Header
               handleEditShow={this.handleEditShow}
