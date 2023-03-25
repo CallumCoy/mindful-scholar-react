@@ -15,6 +15,7 @@ import { ViewModal } from "./components/ViewModal";
 import { ModalSignUp } from "./components/ModalSignUp";
 import { ModalSignIn } from "./components/ModalSignIn";
 import { ModalMassCreaion } from "./components/ModalMassInput";
+import { filterSet } from "./components/FilterConstructor";
 
 export class App extends Component {
   constructor(props) {
@@ -122,10 +123,24 @@ export class App extends Component {
     }
   }
 
+  filter = (filters) => {
+    console.log(filterSet(this.state.scholarships, filters));
+
+    this.setState({
+      scholarships: filterSet(this.state.scholarships, filters),
+    });
+    this.resetSelection();
+  };
+
   async fetchScholarships() {
     this.setState({ loadedScholarship: true });
     const apiData = await API.graphql({ query: listScholarships });
-    const scholarshipsFromAPI = apiData.data.listScholarships.items;
+    let scholarshipsFromAPI = apiData.data.listScholarships.items;
+
+    scholarshipsFromAPI.forEach((scholarship) => {
+      scholarship.show = true;
+    });
+
     this.setState({ scholarships: scholarshipsFromAPI });
   }
 
@@ -149,7 +164,7 @@ export class App extends Component {
           id="outer-container"
           className="scrolling background"
         >
-          <SideBar pageWrapId="page-wrap" />
+          <SideBar pageWrapId="page-wrap" filter={this.filter} />
           <main id="page-wrap">
             <Header
               handleEditShow={this.handleEditShow}

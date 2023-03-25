@@ -1,8 +1,4 @@
 export function filterSet(scholarships, filters) {
-  if (parameterCheck(scholarships, filters)) {
-    return;
-  }
-
   scholarships.forEach((scholarship) => {
     try {
       scholarship.show = name(scholarship, filters);
@@ -10,17 +6,21 @@ export function filterSet(scholarships, filters) {
       console.error("filters error caught: ", scholarship.name, err);
       scholarship.show = false;
     }
+
+    return scholarships;
   });
 
   return scholarships;
 }
 
 export function name(scholarship, filters) {
+  console.log(
+    filters.name ? scholarship.ScholarshipName.includes(filters.name) : true
+  );
   const visible = filters.name
     ? scholarship.ScholarshipName.includes(filters.name)
     : true;
-
-  return visible ? false : date(scholarship, filters);
+  return visible ? date(scholarship, filters) : false;
 }
 
 export function date(scholarship, filters) {
@@ -28,7 +28,7 @@ export function date(scholarship, filters) {
     ? scholarship.ExpirationDate < filters.date
     : true;
 
-  return visible ? false : gPA(scholarship, filters);
+  return visible ? gPA(scholarship, filters) : false;
 }
 
 export function gPA(scholarship, filters) {
@@ -46,7 +46,7 @@ export function gPA(scholarship, filters) {
       filters.maxGPA < scholarship.maxGPA;
   }
 
-  return visible ? false : backer(scholarship, filters);
+  return visible ? backer(scholarship, filters) : false;
 }
 
 export function backer(scholarship, filters) {
@@ -54,13 +54,13 @@ export function backer(scholarship, filters) {
     ? scholarship.Provider.includes(filters.backer)
     : true;
 
-  return visible ? false : date(scholarship, filters);
+  return visible ? amount(scholarship, filters) : false;
 }
 
 export function amount(scholarship, filters) {
   const visible = filters.amount ? scholarship.Amount >= filters.amount : true;
 
-  return visible ? false : interests(scholarship, filters);
+  return visible ? interests(scholarship, filters) : false;
 }
 
 export function interests(scholarship, filters) {
@@ -68,7 +68,7 @@ export function interests(scholarship, filters) {
     ? scholarship.Interests.includes(filters.interests)
     : true;
 
-  return visible ? false : ethnicity(scholarship, filters);
+  return visible ? ethnicity(scholarship, filters) : false;
 }
 
 export function ethnicity(scholarship, filters) {
@@ -76,7 +76,7 @@ export function ethnicity(scholarship, filters) {
     ? scholarship.Ethnicity.includes(filters.ethnicity)
     : true;
 
-  return visible ? false : citizenship(scholarship, filters);
+  return visible ? citizenship(scholarship, filters) : false;
 }
 
 export function citizenship(scholarship, filters) {
@@ -84,7 +84,7 @@ export function citizenship(scholarship, filters) {
     ? scholarship.CitizenshipStatus.includes(filters.citizenship)
     : true;
 
-  return visible ? false : state(scholarship, filters);
+  return visible ? state(scholarship, filters) : false;
 }
 
 export function state(scholarship, filters) {
@@ -92,7 +92,7 @@ export function state(scholarship, filters) {
     ? scholarship.StateOfResidency.includes(filters.state)
     : true;
 
-  return visible ? false : education(scholarship, filters);
+  return visible ? education(scholarship, filters) : false;
 }
 
 export function education(scholarship, filters) {
@@ -101,8 +101,4 @@ export function education(scholarship, filters) {
     : true;
 
   return visible;
-}
-
-function parameterCheck(scholarships, param) {
-  return !(scholarships & param);
 }

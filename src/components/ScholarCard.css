@@ -4,3 +4,22 @@
   opacity: 98.5%;
   border-radius: 20px;
 }
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardHeader {
+  height: 25px;
+}
+
+.Desc {
+  overflow: hidden;
+  height: 70px;
+  text-overflow: ellipsis;
+}
+
+.provider {
+  height: 25px;
+}
