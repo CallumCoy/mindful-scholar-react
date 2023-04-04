@@ -11,7 +11,7 @@ export class ModalSignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
       errorMessage: "",
       failure: false,
@@ -21,7 +21,7 @@ export class ModalSignIn extends React.Component {
   }
 
   reset = () => {
-    this.setState({ username: "" });
+    this.setState({ email: "" });
     this.setState({ password: "" });
     this.setState({ errorMessage: "" });
     this.setState({ failure: false });
@@ -36,15 +36,15 @@ export class ModalSignIn extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    const username = this.state.username;
+    const email = this.state.email;
     const password = this.state.password;
 
     this.setState({ failure: false });
     this.setState({ password: "" });
 
     try {
-      await Auth.signIn(username, password).then((res) => {
-        this.setState({ username: "" });
+      await Auth.signIn(email, password).then((res) => {
+        this.setState({ email: "" });
         this.props.getLoginStatus();
         this.handleSignInClose();
       });
@@ -68,14 +68,14 @@ export class ModalSignIn extends React.Component {
           <Modal.Body>
             <div>
               <Form onSubmit={this.handleSubmit}>
-                <Form.Label className="light-text">username</Form.Label>
+                <Form.Label className="light-text">email</Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
-                    name="username"
-                    placeholder="username"
-                    aria-label="username"
+                    name="email"
+                    placeholder="email"
+                    aria-label="email"
                     aria-describedby="basic-addon1"
-                    value={this.state.username || ""}
+                    value={this.state.email || ""}
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
