@@ -206,6 +206,7 @@ export class App extends Component {
               resetSelection={this.resetSelection}
               curSchol={this.state.curSchol}
               modalViewerShow={this.state.modalViewerShow}
+              loggedIn={this.state.loggedIn}
             />
 
             <ModalSignIn

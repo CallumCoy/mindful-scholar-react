@@ -96,7 +96,7 @@ export class ViewModal extends React.Component {
 
             <br />
 
-            <label className="light-text">College Level</label>
+            <label className="light-text">Education Level</label>
             <div className="mb-3">{this.props.curSchol.CollegeLevel || ""}</div>
 
             <br />
@@ -153,12 +153,16 @@ export class ViewModal extends React.Component {
                   <Button
                     className="btn-light btn btn-outline-success p-2"
                     onClick={this.manageEdit}
+                    disabled={!this.props.loggedIn}
+                    hidden={!this.props.loggedIn}
                   >
                     Edit
                   </Button>
                   <Button
                     className="btn-light btn-outline-danger p-2"
                     onClick={this.handleDelete}
+                    disabled={!this.props.loggedIn}
+                    hidden={!this.props.loggedIn}
                   >
                     Delete
                   </Button>

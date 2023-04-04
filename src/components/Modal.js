@@ -180,7 +180,7 @@ export class AddnSaveModal extends React.Component {
 
               <br />
 
-              <Form.Label className="light-text">College Level</Form.Label>
+              <Form.Label className="light-text">Education Level</Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
                   name="CollegeLevel"
