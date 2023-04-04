@@ -81,6 +81,9 @@ export class ModalMassCreaion extends React.Component {
       id: dataPoint.id,
     };
 
+    this.close();
+    this.clearForm();
+
     if (!data.id) {
       await API.graphql({
         query: createscholarshipMutation,
