@@ -8,20 +8,26 @@ export class CardHolder extends Component {
     return (
       <div className="w-100 card-container">
         <View margin="3rem 0">
-          <div className="row m-auto pr-5">
+          <ul className="row m-auto pr-5">
             {this.props.scholarships.map((Scholarship) => (
-              <ScholarCard
-                deleteScholarship={this.props.deleteScholarship}
-                handleEditShow={this.props.handleEditShow}
-                handleViewerShow={this.props.handleViewerShow}
-                setCurSchol={this.props.setCurSchol}
-                Scholarship={Scholarship}
-                curSchol={this.props.curSchol}
-                modalViewerShow={this.props.modalViewerShow}
-                loggedIn={this.props.loggedIn}
-              />
+              <li
+                key={Scholarship.id}
+                className="card my-2 mx-auto bg-transparent border-0 pr-4"
+                hidden={!Scholarship.show}
+              >
+                <ScholarCard
+                  deleteScholarship={this.props.deleteScholarship}
+                  handleEditShow={this.props.handleEditShow}
+                  handleViewerShow={this.props.handleViewerShow}
+                  setCurSchol={this.props.setCurSchol}
+                  Scholarship={Scholarship}
+                  curSchol={this.props.curSchol}
+                  modalViewerShow={this.props.modalViewerShow}
+                  loggedIn={this.props.loggedIn}
+                />
+              </li>
             ))}
-          </div>
+          </ul>
         </View>
       </div>
     );
