@@ -51,18 +51,20 @@ export class ModalMassCreaion extends React.Component {
   async CreateScholarship(dataPoint) {
     const data = {
       ScholarshipName: dataPoint.ScholarshipName,
-      ExpirationDate:
-        new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-        }).format(new Date(dataPoint.ExpirationDate)) || new Date(),
-      OpeningDate:
-        new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-        }).format(new Date(dataPoint.OpeningDate)) || new Date(),
+      ExpirationDate: dataPoint.ExpirationDate
+        ? new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          }).format(new Date(dataPoint.ExpirationDate))
+        : new Date(),
+      OpeningDate: dataPoint.OpeningDate
+        ? new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          }).format(new Date(dataPoint.OpeningDate))
+        : new Date(),
       Amount:
         dataPoint.Amount === ""
           ? null

@@ -138,14 +138,38 @@ export class App extends Component {
 
   async fetchScholarships() {
     this.setState({ loadedScholarship: true });
-    const apiData = await API.graphql({ query: listScholarships });
-    let scholarshipsFromAPI = apiData.data.listScholarships.items;
+    var apiData = await API.graphql({ query: listScholarships });
+    var scholarshipsFromAPI = apiData.data.listScholarships.items;
 
     scholarshipsFromAPI.forEach((scholarship) => {
       scholarship.show = true;
     });
+    console.log(apiData);
 
-    this.setState({ scholarships: scholarshipsFromAPI });
+    var incomingScholarships = scholarshipsFromAPI;
+
+    while (apiData.data.listScholarships.nextToken) {
+      apiData = await API.graphql({
+        query: listScholarships,
+        variables: { nextToken: apiData.data.listScholarships.nextToken },
+      });
+
+      scholarshipsFromAPI = apiData.data.listScholarships.items;
+
+      scholarshipsFromAPI.forEach((scholarship) => {
+        scholarship.show = true;
+      });
+
+      incomingScholarships = [...incomingScholarships, ...scholarshipsFromAPI];
+
+      console.log(apiData);
+      scholarshipsFromAPI.forEach((scholarship) => {
+        scholarship.show = true;
+      });
+    }
+
+    this.setState({ scholarships: incomingScholarships });
+    console.log(incomingScholarships);
   }
 
   async deleteScholarship({ id }) {
