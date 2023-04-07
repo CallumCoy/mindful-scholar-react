@@ -26,11 +26,7 @@ export class ScholarCard extends Component {
 
   render() {
     return (
-      <li
-        className="card my-2 mx-auto bg-transparent border-0 pr-4"
-        key={this.props.Scholarship.id}
-        hidden={!this.props.Scholarship.show}
-      >
+      <div className="card my-2 mx-auto bg-transparent border-0 pr-4">
         <div className="card my-2 mx-aut" key={this.props.Scholarship.id}>
           <div className="card-body">
             <h5 className="cardHeader truncate">
@@ -108,7 +104,7 @@ export class ScholarCard extends Component {
             </small>
           </div>
         </div>
-      </li>
+      </div>
     );
   }
 }
