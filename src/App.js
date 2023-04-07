@@ -144,7 +144,6 @@ export class App extends Component {
     scholarshipsFromAPI.forEach((scholarship) => {
       scholarship.show = true;
     });
-    console.log(apiData);
 
     var incomingScholarships = scholarshipsFromAPI;
 
@@ -162,14 +161,12 @@ export class App extends Component {
 
       incomingScholarships = [...incomingScholarships, ...scholarshipsFromAPI];
 
-      console.log(apiData);
       scholarshipsFromAPI.forEach((scholarship) => {
         scholarship.show = true;
       });
     }
 
     this.setState({ scholarships: incomingScholarships });
-    console.log(incomingScholarships);
   }
 
   async deleteScholarship({ id }) {
