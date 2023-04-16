@@ -173,12 +173,16 @@ export class App extends Component {
     await API.graphql({
       query: deleteScholarshipMutation,
       variables: { input: { id } },
-    }).then(() => {
-      const newScholarships = this.state.scholarships.filter(
-        (scholarship) => scholarship.id !== id
-      );
-      this.setState({ scholarships: newScholarships });
-    });
+    })
+      .then(() => {
+        const newScholarships = this.state.scholarships.filter(
+          (scholarship) => scholarship.id !== id
+        );
+        this.setState({ scholarships: newScholarships });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
