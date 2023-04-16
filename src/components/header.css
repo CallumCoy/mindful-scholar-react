@@ -5,7 +5,11 @@
 }
 
 .header-button-container {
-  width: 300px;
+  max-width: 300px;
+}
+
+.navbar-toggler {
+  padding: 4px;
 }
 
 @media (min-width: 975px) {

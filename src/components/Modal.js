@@ -323,15 +323,15 @@ export class AddnSaveModal extends React.Component {
                         </Button>
                         <Button
                           className="btn-light btn btn-outline-success p-2"
-                          onClick={this.saveAndQuit}
+                          onClick={this.saveAndContinue}
                         >
-                          Save & Close
+                          Save
                         </Button>
                         <Button
                           className="btn-light btn btn-outline-success p-2"
-                          onClick={this.saveAndContinue}
+                          onClick={this.saveAndQuit}
                         >
-                          Save & Continue
+                          Save & Close
                         </Button>
                       </div>
                     </div>

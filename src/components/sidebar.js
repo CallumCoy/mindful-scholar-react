@@ -44,7 +44,6 @@ export class SideBar extends React.Component {
   render() {
     return (
       <Menu
-        width={"400px"}
         pageWrapId={"page-wrap"}
         outerContainerId={"outer-container"}
         customBurgerIcon={<div> ⮞ </div>}
