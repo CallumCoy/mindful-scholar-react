@@ -23,3 +23,10 @@
 .provider {
   height: 25px;
 }
+
+@media (max-width: 582px) {
+  .card {
+    height: auto;
+    width: 100%;
+  }
+}
