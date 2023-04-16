@@ -56,6 +56,7 @@ export class ViewModal extends React.Component {
               className="mb-3 w-100"
               rows="8"
               value={this.props.curSchol.Description || ""}
+              disabled
             ></textarea>
 
             <br />
