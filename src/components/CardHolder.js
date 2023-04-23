@@ -2,6 +2,7 @@ import "./CardHolder.css";
 import React, { Component } from "react";
 import { View } from "@aws-amplify/ui-react";
 import { ScholarCard } from "./ScholarCard";
+import { ErrorState } from "./FailState";
 
 export class CardHolder extends Component {
   render() {
@@ -15,16 +16,18 @@ export class CardHolder extends Component {
                 className="card my-2 mx-auto bg-transparent border-0 pr-4"
                 hidden={!Scholarship.show}
               >
-                <ScholarCard
-                  deleteScholarship={this.props.deleteScholarship}
-                  handleEditShow={this.props.handleEditShow}
-                  handleViewerShow={this.props.handleViewerShow}
-                  setCurSchol={this.props.setCurSchol}
-                  Scholarship={Scholarship}
-                  curSchol={this.props.curSchol}
-                  modalViewerShow={this.props.modalViewerShow}
-                  loggedIn={this.props.loggedIn}
-                />
+                <ErrorState>
+                  <ScholarCard
+                    deleteScholarship={this.props.deleteScholarship}
+                    handleEditShow={this.props.handleEditShow}
+                    handleViewerShow={this.props.handleViewerShow}
+                    setCurSchol={this.props.setCurSchol}
+                    Scholarship={Scholarship}
+                    curSchol={this.props.curSchol}
+                    modalViewerShow={this.props.modalViewerShow}
+                    loggedIn={this.props.loggedIn}
+                  />
+                </ErrorState>
               </li>
             ))}
           </ul>
