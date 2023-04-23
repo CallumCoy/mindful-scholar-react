@@ -1,22 +1,19 @@
 {
-  "dev": {
+  "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-mindfulscholarreact-dev-185855-authRole",
-      "UnauthRoleArn": "arn:aws:iam::594729708488:role/amplify-mindfulscholarreact-dev-185855-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::594729708488:role/amplify-mindfulscholarreact-dev-185855-authRole",
+      "AuthRoleName": "amplify-amplifyc7840228e4644-staging-223221-authRole",
+      "UnauthRoleArn": "arn:aws:iam::594729708488:role/amplify-amplifyc7840228e4644-staging-223221-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::594729708488:role/amplify-amplifyc7840228e4644-staging-223221-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-mindfulscholarreact-dev-185855-deployment",
-      "UnauthRoleName": "amplify-mindfulscholarreact-dev-185855-unauthRole",
-      "StackName": "amplify-mindfulscholarreact-dev-185855",
-      "StackId": "arn:aws:cloudformation:us-east-1:594729708488:stack/amplify-mindfulscholarreact-dev-185855/03df2a90-b88d-11ed-a908-0e5e74eb7ed7",
-      "AmplifyAppId": "d2ed7bmpr87nyn"
+      "DeploymentBucketName": "amplify-amplifyc7840228e4644-staging-223221-deployment",
+      "UnauthRoleName": "amplify-amplifyc7840228e4644-staging-223221-unauthRole",
+      "StackName": "amplify-amplifyc7840228e4644-staging-223221",
+      "StackId": "arn:aws:cloudformation:us-east-1:594729708488:stack/amplify-amplifyc7840228e4644-staging-223221/eee170f0-b880-11ed-8ea4-1290a6ed1983",
+      "AmplifyAppId": "d1srmo7h5l88n5"
     },
     "categories": {
       "auth": {
         "mindfulscholarreactfc98af0d": {}
-      },
-      "api": {
-        "mindfulscholarreact": {}
       }
     }
   }
